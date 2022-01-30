@@ -1,17 +1,23 @@
-﻿using System;
+﻿using Prism;
+using Prism.Ioc;
+using Prism.Unity;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Diploma
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
-        {
-            InitializeComponent();
+        public static T Resolve<T>() where T : class => App.Current?.Container?.Resolve<T>();
 
-            MainPage = new MainPage();
+        public App() : this(null)
+        {
         }
+
+        public App(IPlatformInitializer platformInitializer = null) : base(platformInitializer)
+        {
+        }
+
+        #region -- Overrides --
 
         protected override void OnStart()
         {
@@ -24,5 +30,19 @@ namespace Diploma
         protected override void OnResume()
         {
         }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+        }
+
+        protected override void OnInitialized()
+        {
+            InitializeComponent();
+
+            NavigationService.NavigateAsync(Constants.PageConstants.MainPage);
+        }
+
+        #endregion
     }
 }

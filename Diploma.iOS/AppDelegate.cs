@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using Prism;
+using Prism.Ioc;
 using UIKit;
 
 namespace Diploma.iOS
@@ -10,7 +8,7 @@ namespace Diploma.iOS
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
-    [Register("AppDelegate")]
+    [Register(nameof(AppDelegate))]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         //
@@ -23,9 +21,20 @@ namespace Diploma.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        internal class iOSInitializer : IPlatformInitializer
+        {
+            #region -- IPlatformInitializer implementation --
+
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
+            }
+
+            #endregion
         }
     }
 }
