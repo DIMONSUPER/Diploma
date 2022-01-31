@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Diploma.Resources.Styles.LightModeResources">
+
+    <!-- COLORS -->
+    <Color x:Key="cbg_i1">#FFFFFF</Color> <!-- WHITE -->
+    <Color x:Key="cbg_i2">#000000</Color> <!-- BLACK -->
+    <Color x:Key="cbg_i3">#F0F0F0</Color> <!--GRAYSCALE LIGHT-->
+    <Color x:Key="cbg_i4">#222222</Color> <!--GRAYSCALE DARK-->
+
+</ResourceDictionary>

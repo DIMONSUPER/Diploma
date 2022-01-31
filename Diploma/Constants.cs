@@ -4,7 +4,8 @@
     {
         public static class PageConstants
         {
-            public const string MainPage = nameof(MainPage);
+            public const string MainTabbedPage = nameof(MainTabbedPage);
+            public const string NewsPage = nameof(NewsPage);
         }
     }
 }

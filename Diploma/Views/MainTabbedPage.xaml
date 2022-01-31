@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+            xmlns:tabs="clr-namespace:Diploma.Views.Tabs"
+            xmlns:helpers="clr-namespace:Diploma.Helpers"
+            x:Class="Diploma.Views.MainTabbedPage"
+            x:DataType="TabbedPage">
+
+    <tabs:NewsPage Title="{xct:Translate News}">
+        <tabs:NewsPage.IconImageSource>
+
+            <FontImageSource FontFamily="{x:DynamicResource fontAwesomeSolid}"
+                             Glyph="{x:Static helpers:FontIcons.Home}"
+                             Size="34"
+                             Color="Red" />
+
+        </tabs:NewsPage.IconImageSource>
+    </tabs:NewsPage>
+    <tabs:NewsPage Title="{xct:Translate News}"/>
+    <tabs:NewsPage Title="{xct:Translate News}"/>
+
+</TabbedPage>

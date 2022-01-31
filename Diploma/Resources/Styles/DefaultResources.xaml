@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Diploma.Resources.Styles.DefaultResources">
+
+    <!-- FONT SIZES -->
+    <x:Int32 x:Key="tsize_i1">10</x:Int32>
+    <x:Int32 x:Key="tsize_i2">12</x:Int32>
+    <x:Int32 x:Key="tsize_i3">14</x:Int32>
+    <x:Int32 x:Key="tsize_i4">16</x:Int32>
+    <x:Int32 x:Key="tsize_i5">18</x:Int32>
+    <x:Int32 x:Key="tsize_i6">20</x:Int32>
+    <x:Int32 x:Key="tsize_i7">22</x:Int32>
+    <x:Int32 x:Key="tsize_i8">24</x:Int32>
+    <x:Int32 x:Key="tsize_i9">28</x:Int32>
+    <x:Int32 x:Key="tsize_i10">32</x:Int32>
+
+    <!-- FONTS -->
+    <x:String x:Key="fontAwesomeBrandsRegular">FontAwesomeBrandsRegular</x:String>
+    <x:String x:Key="fontAwesomeRegular">FontAwesomeRegular</x:String>
+    <x:String x:Key="fontAwesomeSolid">FontAwesomeSolid</x:String>
+
+</ResourceDictionary>
