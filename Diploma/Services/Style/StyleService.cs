@@ -1,5 +1,6 @@
 ﻿using Diploma.Resources.Styles;
 using Diploma.Services.Settings;
+using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Forms;
 
 namespace Diploma.Services.Style

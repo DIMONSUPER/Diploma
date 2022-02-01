@@ -51,14 +51,8 @@ namespace Diploma
             LocalizationResourceManager.Current.Init(Strings.ResourceManager);
 
             InitializeComponent();
-
+            Resolve<IStyleService>().ChangeThemeTo(OSAppTheme.Dark);
             await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{Constants.PageConstants.MainTabbedPage}");
-
-            _ = Task.Run(async () =>
-            {
-                await Task.Delay(3000);
-                MainThread.BeginInvokeOnMainThread(() => App.Resolve<IStyleService>().ChangeThemeTo(OSAppTheme.Dark));
-            });
         }
 
         #endregion

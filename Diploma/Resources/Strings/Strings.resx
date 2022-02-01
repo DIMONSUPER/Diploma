@@ -20,4 +20,16 @@
 		<value>News</value>
 		<comment>News</comment>
 	</data>
+	<data name="Home" xml:space="preserve">
+		<value>Home</value>
+		<comment>Home</comment>
+	</data>
+	<data name="Users" xml:space="preserve">
+		<value>Users</value>
+		<comment>Users</comment>
+	</data>
+	<data name="Schedule" xml:space="preserve">
+		<value>Schedule</value>
+		<comment>Schedule</comment>
+	</data>
 </root>

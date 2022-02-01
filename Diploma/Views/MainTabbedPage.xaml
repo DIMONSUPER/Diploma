@@ -2,22 +2,73 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:tabs="clr-namespace:Diploma.Views.Tabs"
             xmlns:helpers="clr-namespace:Diploma.Helpers"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            SelectedTabColor="{x:DynamicResource cbg_i5}"
+            UnselectedTabColor="{x:DynamicResource cbg_i4}"
+            BarBackgroundColor="{x:DynamicResource cbg_i1}"
+            xct:StatusBarEffect.Style="DarkContent"
             x:Class="Diploma.Views.MainTabbedPage"
             x:DataType="TabbedPage">
 
-    <tabs:NewsPage Title="{xct:Translate News}">
+    <TabbedPage.Resources>
+
+        <Style x:Key="iconStyle" TargetType="FontImageSource">
+            <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
+            <Setter Property="Size" Value="34"/>
+            <Setter Property="Color" Value="{x:DynamicResource cbg_i5}"/>
+        </Style>
+
+    </TabbedPage.Resources>
+
+    <tabs:NewsPage Title="{xct:Translate Home}">
+
         <tabs:NewsPage.IconImageSource>
 
-            <FontImageSource FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Glyph="{x:Static helpers:FontIcons.Home}"
-                             Size="34"
-                             Color="Red" />
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.Home}"
+                             FontFamily="{x:DynamicResource fontAwesomeSolid}"
+                             Size="22"/>
 
         </tabs:NewsPage.IconImageSource>
+
     </tabs:NewsPage>
-    <tabs:NewsPage Title="{xct:Translate News}"/>
-    <tabs:NewsPage Title="{xct:Translate News}"/>
+
+    <tabs:NewsPage Title="{xct:Translate News}">
+
+        <tabs:NewsPage.IconImageSource>
+
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.Newspaper}"
+                             FontFamily="{x:DynamicResource fontAwesomeSolid}"
+                             Size="22"/>
+
+        </tabs:NewsPage.IconImageSource>
+
+    </tabs:NewsPage>
+
+    <tabs:NewsPage Title="{xct:Translate Users}">
+
+        <tabs:NewsPage.IconImageSource>
+
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.UserFriends}"
+                             FontFamily="{x:DynamicResource fontAwesomeSolid}"
+                             Size="22"/>
+
+        </tabs:NewsPage.IconImageSource>
+
+    </tabs:NewsPage>
+
+    <tabs:NewsPage Title="{xct:Translate Schedule}">
+
+        <tabs:NewsPage.IconImageSource>
+
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.CalendarAlt}"
+                             FontFamily="{x:DynamicResource fontAwesomeSolid}"
+                             Size="22"/>
+
+        </tabs:NewsPage.IconImageSource>
+
+    </tabs:NewsPage>
 
 </TabbedPage>
