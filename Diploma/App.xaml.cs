@@ -1,12 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Diploma.Resources.Strings;
+using Diploma.Services.Mapper;
 using Diploma.Services.Rest;
 using Diploma.Services.Settings;
 using Diploma.Services.Style;
+using Diploma.ViewModels.Tabs;
 using Diploma.Views;
 using Diploma.Views.Tabs;
 using Prism;
 using Prism.Ioc;
+using Prism.Navigation;
 using Prism.Unity;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Essentials;
@@ -38,8 +41,11 @@ namespace Diploma
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainTabbedPage>();
-            containerRegistry.RegisterForNavigation<NewsPage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<FacultyPage, FacultyPageViewModel>();
+            containerRegistry.RegisterForNavigation<SchedulePage, SchedulePageViewModel>();
 
+            containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
             containerRegistry.RegisterInstance<IStyleService>(Container.Resolve<StyleService>());
@@ -51,7 +57,9 @@ namespace Diploma
             LocalizationResourceManager.Current.Init(Strings.ResourceManager);
 
             InitializeComponent();
+
             Resolve<IStyleService>().ChangeThemeTo(OSAppTheme.Dark);
+
             await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{Constants.PageConstants.MainTabbedPage}");
         }
 

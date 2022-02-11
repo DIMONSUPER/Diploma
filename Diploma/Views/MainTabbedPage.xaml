@@ -23,52 +23,40 @@
 
     </TabbedPage.Resources>
 
-    <tabs:NewsPage Title="{xct:Translate Home}">
+    <tabs:HomePage Title="{xct:Translate Home}">
 
-        <tabs:NewsPage.IconImageSource>
+        <tabs:HomePage.IconImageSource>
 
             <FontImageSource Glyph="{x:Static helpers:FontIcons.Home}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
                              Size="22"/>
 
-        </tabs:NewsPage.IconImageSource>
+        </tabs:HomePage.IconImageSource>
 
-    </tabs:NewsPage>
+    </tabs:HomePage>
 
-    <tabs:NewsPage Title="{xct:Translate News}">
+    <tabs:SchedulePage Title="{xct:Translate Schedule}">
 
-        <tabs:NewsPage.IconImageSource>
+        <tabs:SchedulePage.IconImageSource>
 
-            <FontImageSource Glyph="{x:Static helpers:FontIcons.Newspaper}"
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.Calendar}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
                              Size="22"/>
 
-        </tabs:NewsPage.IconImageSource>
+        </tabs:SchedulePage.IconImageSource>
 
-    </tabs:NewsPage>
+    </tabs:SchedulePage>
 
-    <tabs:NewsPage Title="{xct:Translate Users}">
+    <tabs:FacultyPage Title="{xct:Translate Faculty}">
 
-        <tabs:NewsPage.IconImageSource>
+        <tabs:FacultyPage.IconImageSource>
 
-            <FontImageSource Glyph="{x:Static helpers:FontIcons.UserFriends}"
+            <FontImageSource Glyph="{x:Static helpers:FontIcons.UserGraduate}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
                              Size="22"/>
 
-        </tabs:NewsPage.IconImageSource>
+        </tabs:FacultyPage.IconImageSource>
 
-    </tabs:NewsPage>
-
-    <tabs:NewsPage Title="{xct:Translate Schedule}">
-
-        <tabs:NewsPage.IconImageSource>
-
-            <FontImageSource Glyph="{x:Static helpers:FontIcons.CalendarAlt}"
-                             FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Size="22"/>
-
-        </tabs:NewsPage.IconImageSource>
-
-    </tabs:NewsPage>
+    </tabs:FacultyPage>
 
 </TabbedPage>

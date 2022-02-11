@@ -10,4 +10,11 @@
     <Color x:Key="cbg_i4">#F0F0F0</Color> <!-- GRAYSCALE LIGHT -->
     <Color x:Key="cbg_i5">#6f85fc</Color> <!-- LIGHT PURPLE -->
 
+    <!-- TEXT COLOR -->
+    <Color x:Key="tcolor_i1">#000000</Color> <!-- BLACK -->
+    <Color x:Key="tcolor_i2">#FFFFFF</Color> <!-- WHITE -->
+    <Color x:Key="tcolor_i3">#222222</Color> <!-- GRAYSCALE DARK -->
+    <Color x:Key="tcolor_i4">#F0F0F0</Color> <!-- GRAYSCALE LIGHT -->
+    <Color x:Key="tcolor_i5">#6f85fc</Color> <!-- LIGHT PURPLE -->
+
 </ResourceDictionary>

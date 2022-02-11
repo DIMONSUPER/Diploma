@@ -20,4 +20,20 @@
 		<value>Новини</value>
 		<comment>News</comment>
 	</data>
+	<data name="Home" xml:space="preserve">
+		<value>Головна</value>
+		<comment>Home</comment>
+	</data>
+	<data name="Users" xml:space="preserve">
+		<value>Користувачi</value>
+		<comment>Users</comment>
+	</data>
+	<data name="Schedule" xml:space="preserve">
+		<value>Розклад</value>
+		<comment>Schedule</comment>
+	</data>
+	<data name="Faculty" xml:space="preserve">
+		<value>Факультет</value>
+		<comment>Faculty</comment>
+	</data>
 </root>

@@ -32,4 +32,8 @@
 		<value>Schedule</value>
 		<comment>Schedule</comment>
 	</data>
+	<data name="Faculty" xml:space="preserve">
+		<value>Faculty</value>
+		<comment>Faculty</comment>
+	</data>
 </root>

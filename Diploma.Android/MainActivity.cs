@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using FFImageLoading.Forms.Platform;
 
 namespace Diploma.Droid
 {
@@ -23,6 +24,7 @@ namespace Diploma.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(true);
 
             LoadApplication(new App(new AndroidInitializer()));
         }

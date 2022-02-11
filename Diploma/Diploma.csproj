@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <Configurations>Debug;Release;DEV;STAGE</Configurations>
     <Platforms>AnyCPU;iPhone;iPhoneSimulator</Platforms>
@@ -90,10 +90,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Prism.Unity.Forms" />
@@ -120,6 +122,11 @@
     <None Remove="Converters\" />
     <None Remove="Services\Style\" />
     <None Remove="Resources\Fonts\Font_Awesome_5_Brands_Regular_400.otf" />
+    <None Remove="Controls\" />
+    <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="Xamarin.Essentials" />
+    <None Remove="Services\Mapper\" />
+    <None Remove="AutoMapper" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -139,6 +146,8 @@
     <Folder Include="Resources\Styles\" />
     <Folder Include="Converters\" />
     <Folder Include="Services\Style\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Services\Mapper\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Font_Awesome_5_Regular_400.otf" />

@@ -76,5 +76,11 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("Schedule", resourceCulture);
             }
         }
+        
+        internal static string Faculty {
+            get {
+                return ResourceManager.GetString("Faculty", resourceCulture);
+            }
+        }
     }
 }

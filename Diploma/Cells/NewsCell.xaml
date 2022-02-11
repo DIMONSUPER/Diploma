@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:models="clr-namespace:Diploma.Models"
+             x:Class="Diploma.Cells.NewsCell"
+             x:DataType="{x:Type models:NewsModel}">
+
+    <Frame BackgroundColor="{x:DynamicResource cbg_i3}"
+           IsClippedToBounds="True"
+           CornerRadius="8"
+           Padding="0">
+
+        <Grid RowDefinitions="140, Auto"
+              RowSpacing="0">
+
+            <ff:CachedImage Grid.Row="0"
+                            Aspect="Fill"
+                            Source="{Binding ImageUrl}"/>
+
+            <Label Grid.Row="1"
+                   Text="{Binding Title}"
+                   FontAttributes="Bold"
+                   Margin="10,10"
+                   FontSize="{x:DynamicResource tsize_i4}"
+                   TextColor="{x:DynamicResource tcolor_i4}"
+                   HorizontalTextAlignment="Start"/>
+
+        </Grid>
+
+    </Frame>
+
+</ContentView>
