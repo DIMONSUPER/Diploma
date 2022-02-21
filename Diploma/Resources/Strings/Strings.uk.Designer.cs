@@ -82,5 +82,29 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("Faculty", resourceCulture);
             }
         }
+        
+        internal static string Courses {
+            get {
+                return ResourceManager.GetString("Courses", resourceCulture);
+            }
+        }
+        
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        internal static string Notifications {
+            get {
+                return ResourceManager.GetString("Notifications", resourceCulture);
+            }
+        }
     }
 }

@@ -2,6 +2,8 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Diploma.Resources.Styles.DefaultResources">
+    <!-- ICON FONT SIZES -->
+    <x:Int32 x:Key="itsize_i1">22</x:Int32>
 
     <!-- FONT SIZES -->
     <x:Int32 x:Key="tsize_i1">10</x:Int32>

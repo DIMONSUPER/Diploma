@@ -36,4 +36,20 @@
 		<value>Faculty</value>
 		<comment>Faculty</comment>
 	</data>
+	<data name="Courses" xml:space="preserve">
+		<value>Courses</value>
+		<comment>Courses</comment>
+	</data>
+	<data name="Search" xml:space="preserve">
+		<value>Search</value>
+		<comment>Search</comment>
+	</data>
+	<data name="Profile" xml:space="preserve">
+		<value>Profile</value>
+		<comment>Profile</comment>
+	</data>
+	<data name="Notifications" xml:space="preserve">
+		<value>Notifications</value>
+		<comment>Notifications</comment>
+	</data>
 </root>

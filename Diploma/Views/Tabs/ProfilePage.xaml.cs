@@ -1,8 +1,8 @@
 ﻿namespace Diploma.Views.Tabs
 {
-    public partial class FacultyPage : BaseTabContentPage
+    public partial class ProfilePage : BaseTabContentPage
     {
-        public FacultyPage()
+        public ProfilePage()
         {
             InitializeComponent();
         }

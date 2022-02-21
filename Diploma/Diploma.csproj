@@ -20,7 +20,7 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
-    <IntermediateOutputPath>obj\Release\netstandard2.0</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Release\netstandard2.0\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;DEV;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
@@ -28,7 +28,7 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
-    <IntermediateOutputPath>obj\Release\netstandard2.0</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Release\netstandard2.0\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;STAGE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
@@ -38,39 +38,39 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|iPhone' ">
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\STAGE</OutputPath>
+    <OutputPath>bin\iPhone\STAGE\netstandard2.1</OutputPath>
     <DefineConstants>STAGE</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>obj\iPhone\STAGE</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\iPhone\STAGE\netstandard2.1</IntermediateOutputPath>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|iPhoneSimulator' ">
-    <IntermediateOutputPath>obj\iPhoneSimulator\STAGE</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\iPhoneSimulator\STAGE\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\STAGE</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\STAGE\netstandard2.1</OutputPath>
     <DefineConstants>STAGE</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|iPhone' ">
-    <IntermediateOutputPath>obj\iPhone\DEV</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\iPhone\DEV\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\DEV</OutputPath>
+    <OutputPath>bin\iPhone\DEV\netstandard2.1</OutputPath>
     <DefineConstants>DEV</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|iPhoneSimulator' ">
-    <IntermediateOutputPath>obj\iPhoneSimulator\DEV</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\iPhoneSimulator\DEV\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\DEV</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\DEV\netstandard2.1</OutputPath>
     <DefineConstants>DEV</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>

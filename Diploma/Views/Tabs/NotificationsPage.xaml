@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<tabs:BaseTabContentPage xmlns:tabs="clr-namespace:Diploma.Views.Tabs"
+                         xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         x:Class="Diploma.Views.Tabs.NotificationsPage">
+
+    <tabs:BaseTabContentPage.Content>
+        
+    </tabs:BaseTabContentPage.Content>
+
+</tabs:BaseTabContentPage>

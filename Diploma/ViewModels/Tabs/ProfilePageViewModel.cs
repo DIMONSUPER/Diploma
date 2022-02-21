@@ -2,9 +2,9 @@
 
 namespace Diploma.ViewModels.Tabs
 {
-    public class FacultyPageViewModel : BaseTabViewModel
+    public class ProfilePageViewModel : BaseTabViewModel
     {
-        public FacultyPageViewModel(
+        public ProfilePageViewModel(
             INavigationService navigationService)
             : base(navigationService)
         {

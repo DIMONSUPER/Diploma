@@ -1,8 +1,8 @@
 ﻿namespace Diploma.Views.Tabs
 {
-    public partial class SchedulePage : BaseTabContentPage
+    public partial class SearchPage : BaseTabContentPage
     {
-        public SchedulePage()
+        public SearchPage()
         {
             InitializeComponent();
         }

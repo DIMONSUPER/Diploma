@@ -30,9 +30,9 @@ namespace Diploma.ViewModels.Tabs
 
         #region -- Overrides --
 
-        public override async void OnAppearing()
+        public override async void Initialize(INavigationParameters parameters)
         {
-            base.OnAppearing();
+            base.Initialize(parameters);
 
             await InitMockedNewsItemsAsync();
         }

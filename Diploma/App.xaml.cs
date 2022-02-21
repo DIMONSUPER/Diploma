@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Diploma.Resources.Strings;
+﻿using Diploma.Resources.Strings;
 using Diploma.Services.Mapper;
 using Diploma.Services.Rest;
 using Diploma.Services.Settings;
@@ -9,10 +8,8 @@ using Diploma.Views;
 using Diploma.Views.Tabs;
 using Prism;
 using Prism.Ioc;
-using Prism.Navigation;
 using Prism.Unity;
 using Xamarin.CommunityToolkit.Helpers;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Diploma
@@ -42,8 +39,9 @@ namespace Diploma
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainTabbedPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<FacultyPage, FacultyPageViewModel>();
-            containerRegistry.RegisterForNavigation<SchedulePage, SchedulePageViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
 
             containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());

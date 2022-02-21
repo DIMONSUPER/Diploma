@@ -36,4 +36,20 @@
 		<value>Факультет</value>
 		<comment>Faculty</comment>
 	</data>
+	<data name="Courses" xml:space="preserve">
+		<value>Курсы</value>
+		<comment>Courses</comment>
+	</data>
+	<data name="Search" xml:space="preserve">
+		<value>Поиск</value>
+		<comment>Search</comment>
+	</data>
+	<data name="Profile" xml:space="preserve">
+		<value>Профиль</value>
+		<comment>Profile</comment>
+	</data>
+	<data name="Notifications" xml:space="preserve">
+		<value>Уведомления</value>
+		<comment>Notifications</comment>
+	</data>
 </root>
