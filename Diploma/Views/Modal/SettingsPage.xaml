@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<modal:BaseModalContentPage xmlns:modal="clr-namespace:Diploma.Views.Modal"
+                            xmlns="http://xamarin.com/schemas/2014/forms"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            xmlns:helpers="clr-namespace:Diploma.Helpers"
+                            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                            xmlns:vms="clr-namespace:Diploma.ViewModels.Modal"
+                            x:Class="Diploma.Views.Modal.SettingsPage"
+                            BackgroundColor="{x:DynamicResource cbg_i1}"
+                            x:DataType="{x:Type vms:SettingsPageViewModel}">
+
+    <modal:BaseModalContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="iconStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
+                <Setter Property="FontSize" Value="{x:DynamicResource itsize_i7}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+            </Style>
+
+            <Style x:Key="textLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i5}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </modal:BaseModalContentPage.Resources>
+
+    <modal:BaseModalContentPage.Content>
+
+        <Grid RowDefinitions="60, 1, *"
+              ColumnDefinitions="40, *"
+              RowSpacing="0">
+
+            <Label Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="Settings"
+                   TextColor="{x:DynamicResource cbg_i4}"
+                   FontSize="{x:DynamicResource tsize_i5}"
+                   FontAttributes="Bold"/>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{x:Static helpers:FontIcons.ArrowLeft}"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Style="{x:DynamicResource iconStyle}"
+                   xct:TouchEffect.Command="{Binding BackButtonTappedCommand}"/>
+
+            <!-- LINE -->
+            <BoxView Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Color="{x:DynamicResource cbg_i3}"
+                     HeightRequest="1"/>
+
+            <StackLayout Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         Spacing="0"
+                         Orientation="Vertical"
+                         Padding="0,20,0,0">
+
+                <StackLayout Spacing="0"
+                             Margin="20,0"
+                             Orientation="Horizontal">
+
+                    <!-- DARK THEME -->
+                    <Label Text="Dark theme:"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           Style="{x:DynamicResource textLabelStyle}"/>
+
+                    <Switch HorizontalOptions="EndAndExpand"
+                            ThumbColor="White"
+                            IsToggled="{Binding IsDarkThemeEnabled}"
+                            OnColor="{x:DynamicResource cbg_i5}"/>
+
+                </StackLayout>
+
+                <!-- LINE -->
+                <BoxView Color="{x:DynamicResource cbg_i3}"
+                         HeightRequest="1"
+                         Margin="0,15,0,0"/>
+
+                <StackLayout Spacing="0"
+                             Margin="20,15,20,0"
+                             Orientation="Horizontal">
+
+                    <!-- DARK THEME -->
+                    <Label Text="Courses language:"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           Style="{x:DynamicResource textLabelStyle}"/>
+
+                    <Picker HorizontalOptions="End"
+                            TextColor="{x:DynamicResource cbg_i4}"
+                            FontSize="{x:DynamicResource tsize_i3}"
+                            ItemsSource="{Binding LanguageItems}"
+                            SelectedItem="{Binding SelectedLanguage}"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"/>
+
+                </StackLayout>
+
+                <!-- LINE -->
+                <BoxView Color="{x:DynamicResource cbg_i3}"
+                         HeightRequest="1"
+                         Margin="0,15,0,0"/>
+
+            </StackLayout>
+
+        </Grid>
+
+    </modal:BaseModalContentPage.Content>
+
+</modal:BaseModalContentPage>

@@ -58,8 +58,9 @@
                     <Label Text="{x:Static helpers:FontIcons.Pen}"
                            Style="{x:DynamicResource iconStyle}"/>
 
-                    <Label Text="{x:Static helpers:FontIcons.SlidersH}"
-                           Style="{x:DynamicResource iconStyle}"/>
+                    <Label Text="{x:Static helpers:FontIcons.Cog}"
+                           Style="{x:DynamicResource iconStyle}"
+                           xct:TouchEffect.Command="{Binding SettingsButtonTappedCommand}"/>
 
                 </StackLayout>
 
@@ -158,6 +159,7 @@
                                    Style="{x:DynamicResource textLabelStyle}"/>
 
                             <TimePicker HorizontalOptions="EndAndExpand"
+                                        BackgroundColor="Transparent"
                                         TextColor="{x:DynamicResource cbg_i4}"/>
 
                         </StackLayout>

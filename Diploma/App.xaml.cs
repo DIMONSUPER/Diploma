@@ -3,8 +3,10 @@ using Diploma.Services.Mapper;
 using Diploma.Services.Rest;
 using Diploma.Services.Settings;
 using Diploma.Services.Style;
+using Diploma.ViewModels.Modal;
 using Diploma.ViewModels.Tabs;
 using Diploma.Views;
+using Diploma.Views.Modal;
 using Diploma.Views.Tabs;
 using Prism;
 using Prism.Ioc;
@@ -42,6 +44,7 @@ namespace Diploma
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
 
             containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());

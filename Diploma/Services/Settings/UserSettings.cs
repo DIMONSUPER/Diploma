@@ -15,5 +15,11 @@ namespace Diploma.Services.Settings
             get => Preferences.Get(nameof(ShouldNotifyMe), false);
             set => Preferences.Set(nameof(ShouldNotifyMe), value);
         }
+
+        public string CoursesLanguage
+        {
+            get => Preferences.Get(nameof(CoursesLanguage), Constants.LanguageConstansts.English);
+            set => Preferences.Set(nameof(CoursesLanguage), value);
+        }
     }
 }

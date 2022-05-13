@@ -10,5 +10,12 @@
             public const string NotificationsPage = nameof(NotificationsPage);
             public const string ProfilePage = nameof(ProfilePage);
         }
+
+        public static class LanguageConstansts
+        {
+            public const string English = nameof(English);
+            public const string Russian = nameof(Russian);
+            public const string Ukrainian = nameof(Ukrainian);
+        }
     }
 }

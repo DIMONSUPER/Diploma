@@ -1,5 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Diploma.Helpers;
 using Diploma.Services.Settings;
+using Diploma.Views.Modal;
 using Prism.Navigation;
 
 namespace Diploma.ViewModels.Tabs
@@ -46,6 +51,9 @@ namespace Diploma.ViewModels.Tabs
             set => SetProperty(ref _shouldNotifyMe, value);
         }
 
+        private ICommand _settingsButtonTappedCommand;
+        public ICommand SettingsButtonTappedCommand => _settingsButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSettingsButtonTappedCommandAsync);
+
         #endregion
 
         #region -- Overrides --
@@ -70,6 +78,11 @@ namespace Diploma.ViewModels.Tabs
         #endregion
 
         #region -- Private helpers --
+
+        private Task OnSettingsButtonTappedCommandAsync()
+        {
+            return NavigationService.NavigateAsync(nameof(SettingsPage), new NavigationParameters(), true, true);
+        }
 
         private void SetNotification()
         {
