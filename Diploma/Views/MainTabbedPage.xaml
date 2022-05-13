@@ -20,7 +20,7 @@
 
             <FontImageSource Glyph="{x:Static helpers:FontIcons.Home}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Size="{x:DynamicResource itsize_i1}"/>
+                             Size="{x:DynamicResource itsize_i9}"/>
 
         </tabs:HomePage.IconImageSource>
 
@@ -32,7 +32,7 @@
 
             <FontImageSource Glyph="{x:Static helpers:FontIcons.Search}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Size="{x:DynamicResource itsize_i1}"/>
+                             Size="{x:DynamicResource itsize_i9}"/>
 
         </tabs:SearchPage.IconImageSource>
 
@@ -44,7 +44,7 @@
 
             <FontImageSource Glyph="{x:Static helpers:FontIcons.Bell}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Size="{x:DynamicResource itsize_i1}"/>
+                             Size="{x:DynamicResource itsize_i9}"/>
 
         </tabs:NotificationsPage.IconImageSource>
 
@@ -56,7 +56,7 @@
 
             <FontImageSource Glyph="{x:Static helpers:FontIcons.User}"
                              FontFamily="{x:DynamicResource fontAwesomeSolid}"
-                             Size="{x:DynamicResource itsize_i1}"/>
+                             Size="{x:DynamicResource itsize_i9}"/>
 
         </tabs:ProfilePage.IconImageSource>
 

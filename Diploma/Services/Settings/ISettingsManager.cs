@@ -4,6 +4,6 @@
     {
         bool IsAuthCompleted { get; set; }
 
-        int AppTheme { get; set; }
+        UserSettings UserSettings { get; }
     }
 }

@@ -106,5 +106,11 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("Notifications", resourceCulture);
             }
         }
+        
+        internal static string NotifyAboutClasses {
+            get {
+                return ResourceManager.GetString("NotifyAboutClasses", resourceCulture);
+            }
+        }
     }
 }

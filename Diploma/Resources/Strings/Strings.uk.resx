@@ -52,4 +52,8 @@
 		<value>Повiдомлення</value>
 		<comment>Notifications</comment>
 	</data>
+	<data name="NotifyAboutClasses" xml:space="preserve">
+		<value>Нагадувати про заннятя</value>
+		<comment>NotifyAboutClasses</comment>
+	</data>
 </root>

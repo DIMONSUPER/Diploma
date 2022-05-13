@@ -52,4 +52,8 @@
 		<value>Notifications</value>
 		<comment>Notifications</comment>
 	</data>
+	<data name="NotifyAboutClasses" xml:space="preserve">
+		<value>Notify about classes</value>
+		<comment>NotifyAboutClasses</comment>
+	</data>
 </root>

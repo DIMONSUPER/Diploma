@@ -20,7 +20,7 @@ namespace Diploma.Services.Style
 
         public void SetThemeOnStart()
         {
-            if (_settingsManager.AppTheme == 0)
+            if (_settingsManager.UserSettings.AppTheme == 0)
             {
                 ChangeThemeTo(App.Current.RequestedTheme);
             }
@@ -28,7 +28,7 @@ namespace Diploma.Services.Style
 
         public void ChangeThemeTo(OSAppTheme theme)
         {
-            _settingsManager.AppTheme = (int)theme;
+            _settingsManager.UserSettings.AppTheme = (int)theme;
             App.Current.UserAppTheme = theme;
 
             App.Current.Resources.MergedDictionaries.Clear();

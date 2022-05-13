@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:converters="clr-namespace:Diploma.Converters"
                     x:Class="Diploma.Resources.Styles.DefaultResources">
+
     <!-- ICON FONT SIZES -->
-    <x:Int32 x:Key="itsize_i1">22</x:Int32>
+    <x:Int32 x:Key="itsize_i1">6</x:Int32>
+    <x:Int32 x:Key="itsize_i2">8</x:Int32>
+    <x:Int32 x:Key="itsize_i3">10</x:Int32>
+    <x:Int32 x:Key="itsize_i4">12</x:Int32>
+    <x:Int32 x:Key="itsize_i5">14</x:Int32>
+    <x:Int32 x:Key="itsize_i6">16</x:Int32>
+    <x:Int32 x:Key="itsize_i7">18</x:Int32>
+    <x:Int32 x:Key="itsize_i8">20</x:Int32>
+    <x:Int32 x:Key="itsize_i9">22</x:Int32>
+    <x:Int32 x:Key="itsize_i10">24</x:Int32>
+    <x:Int32 x:Key="itsize_i11">26</x:Int32>
 
     <!-- FONT SIZES -->
     <x:Int32 x:Key="tsize_i1">10</x:Int32>
@@ -21,5 +33,8 @@
     <x:String x:Key="fontAwesomeBrandsRegular">FontAwesomeBrandsRegular</x:String>
     <x:String x:Key="fontAwesomeRegular">FontAwesomeRegular</x:String>
     <x:String x:Key="fontAwesomeSolid">FontAwesomeSolid</x:String>
+
+    <!-- CONVERTERS -->
+    <converters:FirstLettersConverter x:Key="firstLettersConverter"/>
 
 </ResourceDictionary>
