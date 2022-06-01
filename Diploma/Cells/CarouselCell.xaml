@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:models="clr-namespace:Diploma.Models"
+      xmlns:cell="clr-namespace:Diploma.Cells"
+      x:Class="Diploma.Cells.CarouselCell"
+      x:DataType="{x:Type models:CarouselBindableModel}"
+      RowDefinitions="Auto, *">
+
+    <Grid.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="titleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i6}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </Grid.Resources>
+
+    <StackLayout Orientation="Horizontal"
+                 Margin="20,0,0,0">
+
+        <Label Text="{Binding Title}"
+               Style="{x:DynamicResource titleLabelStyle}"/>
+
+    </StackLayout>
+
+    <ScrollView Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalScrollBarVisibility="Never">
+
+        <StackLayout Orientation="Horizontal"
+                     Spacing="10"
+                     BindableLayout.ItemsSource="{Binding Items}"
+                     Margin="20,0">
+
+            <BindableLayout.ItemTemplate>
+
+                <DataTemplate>
+
+                    <cell:CarouselCourseCell/>
+
+                </DataTemplate>
+
+            </BindableLayout.ItemTemplate>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</Grid>

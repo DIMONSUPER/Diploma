@@ -1,6 +1,5 @@
 ﻿using Diploma.Resources.Styles;
 using Diploma.Services.Settings;
-using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Forms;
 
 namespace Diploma.Services.Style
@@ -12,8 +11,6 @@ namespace Diploma.Services.Style
         public StyleService(ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
-
-            App.Current.RequestedThemeChanged += OnCurrentThemeChangeRequested;
         }
 
         #region -- IStyleService implementation --
@@ -40,13 +37,5 @@ namespace Diploma.Services.Style
 
         #endregion
 
-        #region -- Private helpers --
-
-        private void OnCurrentThemeChangeRequested(object sender, AppThemeChangedEventArgs e)
-        {
-            ChangeThemeTo(e.RequestedTheme);
-        }
-
-        #endregion
     }
 }

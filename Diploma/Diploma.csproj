@@ -89,13 +89,14 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.1.97" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Prism.Unity.Forms" />
@@ -127,6 +128,13 @@
     <None Remove="Xamarin.Essentials" />
     <None Remove="Services\Mapper\" />
     <None Remove="AutoMapper" />
+    <None Remove="Services\User\" />
+    <None Remove="Services\Repository\" />
+    <None Remove="SQLiteNetExtensions" />
+    <None Remove="SQLiteNetExtensions.Async" />
+    <None Remove="Services\Authorization\" />
+    <None Remove="Services\Course\" />
+    <None Remove="sqlite-net-pcl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -148,6 +156,10 @@
     <Folder Include="Services\Style\" />
     <Folder Include="Controls\" />
     <Folder Include="Services\Mapper\" />
+    <Folder Include="Services\User\" />
+    <Folder Include="Services\Repository\" />
+    <Folder Include="Services\Authorization\" />
+    <Folder Include="Services\Course\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Font_Awesome_5_Regular_400.otf" />

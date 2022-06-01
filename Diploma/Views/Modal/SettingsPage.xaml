@@ -41,7 +41,7 @@
                    Grid.ColumnSpan="2"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
-                   Text="Settings"
+                   Text="{xct:Translate Settings}"
                    TextColor="{x:DynamicResource cbg_i4}"
                    FontSize="{x:DynamicResource tsize_i5}"
                    FontAttributes="Bold"/>
@@ -71,7 +71,7 @@
                              Orientation="Horizontal">
 
                     <!-- DARK THEME -->
-                    <Label Text="Dark theme:"
+                    <Label Text="{xct:Translate DarkTheme}"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            VerticalOptions="CenterAndExpand"
@@ -94,7 +94,7 @@
                              Orientation="Horizontal">
 
                     <!-- DARK THEME -->
-                    <Label Text="Courses language:"
+                    <Label Text="{xct:Translate CoursesLanguage}"
                            HorizontalOptions="StartAndExpand"
                            VerticalTextAlignment="Center"
                            VerticalOptions="CenterAndExpand"

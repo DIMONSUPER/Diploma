@@ -9,7 +9,6 @@
     <Color x:Key="cbg_i3">#222222</Color> <!-- GRAYSCALE DARK -->
     <Color x:Key="cbg_i4">#F0F0F0</Color> <!-- GRAYSCALE LIGHT -->
     <Color x:Key="cbg_i5">#6F85FC</Color> <!-- LIGHT PURPLE -->
-    <Color x:Key="cbg_i6">#906f85FC</Color> <!-- 90% LIGHT PURPLE -->
 
     <!-- TEXT COLOR -->
     <Color x:Key="tcolor_i1">#000000</Color> <!-- BLACK -->
@@ -17,5 +16,6 @@
     <Color x:Key="tcolor_i3">#222222</Color> <!-- GRAYSCALE DARK -->
     <Color x:Key="tcolor_i4">#F0F0F0</Color> <!-- GRAYSCALE LIGHT -->
     <Color x:Key="tcolor_i5">#6F85FC</Color> <!-- LIGHT PURPLE -->
+    <Color x:Key="tcolor_i6">#80F0F0F0</Color> <!-- 80% GRAYSCALE LIGHT -->
 
 </ResourceDictionary>

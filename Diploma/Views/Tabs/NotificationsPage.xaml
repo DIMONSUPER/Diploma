@@ -2,10 +2,22 @@
 <tabs:BaseTabContentPage xmlns:tabs="clr-namespace:Diploma.Views.Tabs"
                          xmlns="http://xamarin.com/schemas/2014/forms"
                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                          x:Class="Diploma.Views.Tabs.NotificationsPage">
 
     <tabs:BaseTabContentPage.Content>
-        
+
+        <Grid BackgroundColor="{x:DynamicResource cbg_i1}">
+
+            <Label Text="{xct:Translate NoNotificationsYet}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="{x:DynamicResource tsize_i7}"
+                   TextColor="{x:DynamicResource cbg_i4}"
+                   FontAttributes="Bold"/>
+
+        </Grid>
+
     </tabs:BaseTabContentPage.Content>
 
 </tabs:BaseTabContentPage>

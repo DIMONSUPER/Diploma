@@ -2,6 +2,9 @@
 {
     public static class Constants
     {
+        public const string DATABASE_NAME = "Diploma.db3";
+        public const string BASE_URL = "http://217.24.171.225:1337/api";
+
         public static class PageConstants
         {
             public const string MainTabbedPage = nameof(MainTabbedPage);

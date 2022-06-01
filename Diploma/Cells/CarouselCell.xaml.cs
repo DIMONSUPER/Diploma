@@ -2,9 +2,9 @@
 
 namespace Diploma.Cells
 {
-    public partial class NewsCell : ContentView
+    public partial class CarouselCell : Grid
     {
-        public NewsCell()
+        public CarouselCell()
         {
             InitializeComponent();
         }

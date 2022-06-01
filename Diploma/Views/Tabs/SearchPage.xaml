@@ -2,11 +2,24 @@
 <tabs:BaseTabContentPage xmlns:tabs="clr-namespace:Diploma.Views.Tabs"
                          xmlns="http://xamarin.com/schemas/2014/forms"
                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                         x:Class="Diploma.Views.Tabs.SearchPage">
+                         xmlns:vms="clr-namespace:Diploma.ViewModels.Tabs"
+                         xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                         x:Class="Diploma.Views.Tabs.SearchPage"
+                         x:DataType="{x:Type vms:SearchPageViewModel}">
 
     <tabs:BaseTabContentPage.Content>
 
+        <Grid BackgroundColor="{x:DynamicResource cbg_i1}">
 
+            <SearchBar VerticalOptions="Start"
+                       HorizontalTextAlignment="Start"
+                       TextColor="{x:DynamicResource tcolor_i2}"
+                       FontSize="{x:DynamicResource tsize_i4}"
+                       PlaceholderColor="{x:DynamicResource tcolor_i6}"
+                       BackgroundColor="Transparent"
+                       Placeholder="{xct:Translate SearchCourses}"/>
+
+        </Grid>
         
     </tabs:BaseTabContentPage.Content>
 

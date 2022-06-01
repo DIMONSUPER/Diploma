@@ -56,4 +56,24 @@
 		<value>Notify about classes</value>
 		<comment>NotifyAboutClasses</comment>
 	</data>
+	<data name="SearchCourses" xml:space="preserve">
+		<value>Search courses</value>
+		<comment>Search Courses</comment>
+	</data>
+	<data name="NoNotificationsYet" xml:space="preserve">
+		<value>No notifications yet</value>
+		<comment>No notifications yet</comment>
+	</data>
+	<data name="Settings" xml:space="preserve">
+		<value>Settings</value>
+		<comment>Settings</comment>
+	</data>
+	<data name="DarkTheme" xml:space="preserve">
+		<value>Dark theme:</value>
+		<comment>Dark theme:</comment>
+	</data>
+	<data name="CoursesLanguage" xml:space="preserve">
+		<value>Courses language:</value>
+		<comment>Courses language:</comment>
+	</data>
 </root>

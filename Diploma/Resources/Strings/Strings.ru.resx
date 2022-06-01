@@ -56,4 +56,24 @@
 		<value>Напоминать о занятиях</value>
 		<comment>NotifyAboutClasses</comment>
 	</data>
+	<data name="SearchCourses" xml:space="preserve">
+		<value>Поиск курсов</value>
+		<comment>Search Courses</comment>
+	</data>
+	<data name="NoNotificationsYet" xml:space="preserve">
+		<value>Нет уведомлений</value>
+		<comment>No notifications yet</comment>
+	</data>
+	<data name="Settings" xml:space="preserve">
+		<value>Настройки</value>
+		<comment>Settings</comment>
+	</data>
+	<data name="DarkTheme" xml:space="preserve">
+		<value>Темная тема:</value>
+		<comment>Dark theme:</comment>
+	</data>
+	<data name="CoursesLanguage" xml:space="preserve">
+		<value>Язык курсов:</value>
+		<comment>Courses language:</comment>
+	</data>
 </root>

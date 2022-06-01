@@ -15,14 +15,13 @@
             <CollectionView ItemSizingStrategy="MeasureFirstItem"
                             ItemsUpdatingScrollMode="KeepScrollOffset"
                             SelectionMode="None"
-                            ItemsSource="{Binding NewsItems}"
-                            VerticalScrollBarVisibility="Never"
-                            Margin="20,0">
+                            ItemsSource="{Binding HomeItems}"
+                            VerticalScrollBarVisibility="Never">
 
                 <CollectionView.ItemsLayout>
 
                     <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="20"/>
+                                       ItemSpacing="40"/>
 
                 </CollectionView.ItemsLayout>
 
@@ -35,9 +34,9 @@
 
                 <CollectionView.ItemTemplate>
 
-                    <DataTemplate x:DataType="{x:Type models:NewsModel}">
+                    <DataTemplate x:DataType="{x:Type models:CarouselBindableModel}">
 
-                        <cells:NewsCell/>
+                        <cells:CarouselCell/>
 
                     </DataTemplate>
 

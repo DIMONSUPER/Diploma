@@ -4,9 +4,11 @@ namespace Diploma.Services.Settings
 {
     public class UserSettings
     {
+        #region -- Public properties --
+
         public int AppTheme
         {
-            get => Preferences.Get(nameof(AppTheme), 0);
+            get => Preferences.Get(nameof(AppTheme), 1);
             set => Preferences.Set(nameof(AppTheme), value);
         }
 
@@ -21,5 +23,7 @@ namespace Diploma.Services.Settings
             get => Preferences.Get(nameof(CoursesLanguage), Constants.LanguageConstansts.English);
             set => Preferences.Set(nameof(CoursesLanguage), value);
         }
+
+        #endregion
     }
 }

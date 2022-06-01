@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Diploma.Helpers;
 using Diploma.Services.Settings;
+using Diploma.Services.Style;
 using Prism.Navigation;
 
 namespace Diploma.ViewModels.Modal
@@ -11,13 +12,16 @@ namespace Diploma.ViewModels.Modal
     public class SettingsPageViewModel : BaseViewModel
     {
         private readonly ISettingsManager _settingsManager;
+        private readonly IStyleService _styleService;
 
         public SettingsPageViewModel(
             INavigationService navigationService,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager,
+            IStyleService styleService)
             : base(navigationService)
         {
             _settingsManager = settingsManager;
+            _styleService = styleService;
         }
 
         #region -- Public properties --
@@ -68,6 +72,7 @@ namespace Diploma.ViewModels.Modal
             if (args.PropertyName == nameof(IsDarkThemeEnabled))
             {
                 _settingsManager.UserSettings.AppTheme = IsDarkThemeEnabled ? 2 : 1;
+                _styleService.ChangeThemeTo(IsDarkThemeEnabled ? Xamarin.Forms.OSAppTheme.Dark : Xamarin.Forms.OSAppTheme.Light);
             }
             else if (args.PropertyName == nameof(SelectedLanguage) && SelectedLanguage is not null)
             {

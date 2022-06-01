@@ -112,5 +112,35 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("NotifyAboutClasses", resourceCulture);
             }
         }
+        
+        internal static string SearchCourses {
+            get {
+                return ResourceManager.GetString("SearchCourses", resourceCulture);
+            }
+        }
+        
+        internal static string NoNotificationsYet {
+            get {
+                return ResourceManager.GetString("NoNotificationsYet", resourceCulture);
+            }
+        }
+        
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        internal static string DarkTheme {
+            get {
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
+            }
+        }
+        
+        internal static string CoursesLanguage {
+            get {
+                return ResourceManager.GetString("CoursesLanguage", resourceCulture);
+            }
+        }
     }
 }

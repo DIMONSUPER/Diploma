@@ -56,4 +56,24 @@
 		<value>Нагадувати про заннятя</value>
 		<comment>NotifyAboutClasses</comment>
 	</data>
+	<data name="SearchCourses" xml:space="preserve">
+		<value>Пошук курсів</value>
+		<comment>Search Courses</comment>
+	</data>
+	<data name="NoNotificationsYet" xml:space="preserve">
+		<value>Немає повідомлень</value>
+		<comment>No notifications yet</comment>
+	</data>
+	<data name="Settings" xml:space="preserve">
+		<value>Налаштування</value>
+		<comment>Settings</comment>
+	</data>
+	<data name="DarkTheme" xml:space="preserve">
+		<value>Темна тема:</value>
+		<comment>Dark theme:</comment>
+	</data>
+	<data name="CoursesLanguage" xml:space="preserve">
+		<value>Мова курсів:</value>
+		<comment>Courses language:</comment>
+	</data>
 </root>

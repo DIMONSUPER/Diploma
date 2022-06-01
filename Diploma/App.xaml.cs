@@ -1,8 +1,12 @@
 ﻿using Diploma.Resources.Strings;
+using Diploma.Services.Authorization;
+using Diploma.Services.Course;
 using Diploma.Services.Mapper;
+using Diploma.Services.Repository;
 using Diploma.Services.Rest;
 using Diploma.Services.Settings;
 using Diploma.Services.Style;
+using Diploma.Services.User;
 using Diploma.ViewModels.Modal;
 using Diploma.ViewModels.Tabs;
 using Diploma.Views;
@@ -49,7 +53,11 @@ namespace Diploma
             containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
+            containerRegistry.RegisterInstance<IRepositoryService>(Container.Resolve<RepositoryService>());
             containerRegistry.RegisterInstance<IStyleService>(Container.Resolve<StyleService>());
+            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+            containerRegistry.RegisterInstance<ICoursesService>(Container.Resolve<CoursesService>());
         }
 
         protected override async void OnInitialized()
@@ -59,7 +67,7 @@ namespace Diploma
 
             InitializeComponent();
 
-            Resolve<IStyleService>().ChangeThemeTo(OSAppTheme.Dark);
+            Resolve<IStyleService>().ChangeThemeTo((OSAppTheme)Container.Resolve<ISettingsManager>().UserSettings.AppTheme);
 
             await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{Constants.PageConstants.MainTabbedPage}");
         }

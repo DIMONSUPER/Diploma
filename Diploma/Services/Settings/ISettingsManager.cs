@@ -2,8 +2,10 @@
 {
     public interface ISettingsManager
     {
-        bool IsAuthCompleted { get; set; }
+        bool IsAuthorized { get; }
 
         UserSettings UserSettings { get; }
+
+        AuthorizationSettings AuthorizationSettings { get; }
     }
 }

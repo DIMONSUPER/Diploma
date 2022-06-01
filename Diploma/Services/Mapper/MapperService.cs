@@ -85,7 +85,8 @@ namespace Diploma.Services.Mapper
         {
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<NewsModel, NewsBindableModel>().ReverseMap();
+                cfg.CreateMap<UserModel, UserBindableModel>().ReverseMap();
+                cfg.CreateMap<CourseModel, CourseBindableModel>().ReverseMap();
             });
 
             _mapperCompletionSource.TrySetResult(mapperConfiguration.CreateMapper());
