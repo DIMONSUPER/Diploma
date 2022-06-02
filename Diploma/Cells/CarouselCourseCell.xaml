@@ -32,9 +32,9 @@
 
         <ff:CachedImage HeightRequest="100"
                         Aspect="Fill"
-                        Source="{Binding ImagePath}"/>
+                        Source="{Binding ImageUrl}"/>
 
-        <Label Text="{Binding Title}"
+        <Label Text="{Binding Name}"
                Margin="10"
                MaxLines="2"
                LineBreakMode="TailTruncation"

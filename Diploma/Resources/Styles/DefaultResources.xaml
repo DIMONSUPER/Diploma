@@ -37,4 +37,13 @@
     <!-- CONVERTERS -->
     <converters:FirstLettersConverter x:Key="firstLettersConverter"/>
 
+    <!-- STYLES -->
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{x:DynamicResource cbg_i5}"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="IsRunning" Value="True"/>
+    </Style>
+
 </ResourceDictionary>

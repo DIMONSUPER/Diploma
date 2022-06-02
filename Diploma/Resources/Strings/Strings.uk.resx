@@ -76,4 +76,16 @@
 		<value>Мова курсів:</value>
 		<comment>Courses language:</comment>
 	</data>
+	<data name="NoCoursesYet" xml:space="preserve">
+		<value>Курсів ще немає</value>
+		<comment>No courses yet</comment>
+	</data>
+	<data name="NoInternetConnection" xml:space="preserve">
+		<value>Будь ласка перевірте ваше зʼєднання</value>
+		<comment>Please check your internet connection</comment>
+	</data>
+	<data name="NothingFound" xml:space="preserve">
+		<value>Нічого не знайдено</value>
+		<comment>Nothing found</comment>
+	</data>
 </root>

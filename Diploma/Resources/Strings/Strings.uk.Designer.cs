@@ -142,5 +142,23 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("CoursesLanguage", resourceCulture);
             }
         }
+        
+        internal static string NoCoursesYet {
+            get {
+                return ResourceManager.GetString("NoCoursesYet", resourceCulture);
+            }
+        }
+        
+        internal static string NoInternetConnection {
+            get {
+                return ResourceManager.GetString("NoInternetConnection", resourceCulture);
+            }
+        }
+        
+        internal static string NothingFound {
+            get {
+                return ResourceManager.GetString("NothingFound", resourceCulture);
+            }
+        }
     }
 }

@@ -5,51 +5,97 @@
                          xmlns:vm="clr-namespace:Diploma.ViewModels.Tabs"
                          xmlns:cells="clr-namespace:Diploma.Cells"
                          xmlns:models="clr-namespace:Diploma.Models"
+                         xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                          x:Class="Diploma.Views.Tabs.HomePage"
                          x:DataType="vm:HomePageViewModel">
 
+    <tabs:BaseTabContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="warningLabelStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i6}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </tabs:BaseTabContentPage.Resources>
+
     <tabs:BaseTabContentPage.Content>
 
-        <Grid BackgroundColor="{x:DynamicResource cbg_i1}">
+        <Grid BackgroundColor="{x:DynamicResource cbg_i1}"
+              xct:StateLayout.CurrentState="{Binding CurrentState}"
+              xct:StateLayout.AnimateStateChanges="True">
 
-            <CollectionView ItemSizingStrategy="MeasureFirstItem"
-                            ItemsUpdatingScrollMode="KeepScrollOffset"
-                            SelectionMode="None"
-                            ItemsSource="{Binding HomeItems}"
-                            VerticalScrollBarVisibility="Never">
+            <xct:StateLayout.StateViews>
 
-                <CollectionView.ItemsLayout>
+                <xct:StateView StateKey="Loading"
+                               VerticalOptions="FillAndExpand">
 
-                    <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="40"/>
+                    <ActivityIndicator/>
 
-                </CollectionView.ItemsLayout>
+                </xct:StateView>
 
-                <CollectionView.Header>
+                <xct:StateView StateKey="Empty"
+                               VerticalOptions="FillAndExpand">
 
-                    <BoxView HeightRequest="0"
-                             Color="{x:DynamicResource cbg_i1}"/>
+                    <Label Text="{xct:Translate NoCoursesYet}"
+                           Style="{x:DynamicResource warningLabelStyle}"/>
 
-                </CollectionView.Header>
+                </xct:StateView>
 
-                <CollectionView.ItemTemplate>
+                <xct:StateView StateKey="Error"
+                               VerticalOptions="FillAndExpand">
 
-                    <DataTemplate x:DataType="{x:Type models:CarouselBindableModel}">
+                    <Label Text="{xct:Translate NoInternetConnection}"
+                           Style="{x:DynamicResource warningLabelStyle}"/>
 
-                        <cells:CarouselCell/>
+                </xct:StateView>
 
-                    </DataTemplate>
+                <xct:StateView StateKey="Success">
 
-                </CollectionView.ItemTemplate>
+                    <CollectionView ItemSizingStrategy="MeasureFirstItem"
+                                    ItemsUpdatingScrollMode="KeepScrollOffset"
+                                    SelectionMode="None"
+                                    ItemsSource="{Binding HomeItems}"
+                                    VerticalScrollBarVisibility="Never">
 
-                <CollectionView.Footer>
+                        <CollectionView.ItemsLayout>
 
-                    <BoxView HeightRequest="20"
-                             Color="{x:DynamicResource cbg_i1}"/>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="40"/>
 
-                </CollectionView.Footer>
+                        </CollectionView.ItemsLayout>
 
-            </CollectionView>
+                        <CollectionView.Header>
+
+                            <BoxView HeightRequest="0"
+                                     Color="{x:DynamicResource cbg_i1}"/>
+
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate x:DataType="{x:Type models:CarouselBindableModel}">
+
+                                <cells:CarouselCell/>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                        <CollectionView.Footer>
+
+                            <BoxView HeightRequest="20"
+                                     Color="{x:DynamicResource cbg_i1}"/>
+
+                        </CollectionView.Footer>
+
+                    </CollectionView>
+
+                </xct:StateView>
+
+            </xct:StateLayout.StateViews>
 
         </Grid>
 

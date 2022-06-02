@@ -2,6 +2,8 @@
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Essentials;
 
 namespace Diploma.ViewModels
 {
@@ -10,7 +12,22 @@ namespace Diploma.ViewModels
         public BaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
+
+            Connectivity.ConnectivityChanged += OnConnectionChanged;
         }
+
+        #region -- Public properties --
+
+        public bool IsInternetConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;
+
+        private LayoutState _currentState;
+        public LayoutState CurrentState
+        {
+            get => _currentState;
+            set => SetProperty(ref _currentState, value);
+        }
+
+        #endregion
 
         #region -- Protected properties --
 
@@ -48,7 +65,16 @@ namespace Diploma.ViewModels
 
         #region -- IDestructible implementation --
 
-        public virtual void Destroy() { }
+        public virtual void Destroy()
+        {
+            Connectivity.ConnectivityChanged -= OnConnectionChanged;
+        }
+
+        #endregion
+
+        #region -- Protected helpers --
+
+        protected virtual void OnConnectionChanged(object sender, ConnectivityChangedEventArgs e) { }
 
         #endregion
     }

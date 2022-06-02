@@ -76,4 +76,16 @@
 		<value>Courses language:</value>
 		<comment>Courses language:</comment>
 	</data>
+	<data name="NoCoursesYet" xml:space="preserve">
+		<value>No courses yet</value>
+		<comment>No courses yet</comment>
+	</data>
+	<data name="NoInternetConnection" xml:space="preserve">
+		<value>Please check your internet connection</value>
+		<comment>Please check your internet connection</comment>
+	</data>
+	<data name="NothingFound" xml:space="preserve">
+		<value>Nothing found</value>
+		<comment>Nothing found</comment>
+	</data>
 </root>

@@ -26,12 +26,21 @@ namespace Diploma.Models
         [JsonProperty("rating")]
         public int Rating { get; set; }
 
+        [JsonProperty("image_url")]
+        public string ImageUrl { get; set; }
+
         [Ignore]
         [JsonProperty("lessons")]
         public IEnumerable<int> LessonsIds { get; set; }
 
         [JsonProperty("teacher_id")]
         public int TeacherId { get; set; }
+
+        [JsonProperty("language")]
+        public string Language { get; set; }
+
+        [JsonProperty("category")]
+        public string Category { get; set; }
 
         [Ignore]
         [JsonProperty("users")]
