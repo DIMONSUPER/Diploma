@@ -65,6 +65,13 @@ namespace Diploma.Models
             set => SetProperty(ref _teacherId, value);
         }
 
+        private UserBindableModel _teacher;
+        public UserBindableModel Teacher
+        {
+            get => _teacher;
+            set => SetProperty(ref _teacher, value);
+        }
+
         private string _language;
         public string Language
         {
@@ -77,6 +84,13 @@ namespace Diploma.Models
         {
             get => _category;
             set => SetProperty(ref _category, value);
+        }
+
+        private bool _isVisible;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
         }
 
         private ObservableCollection<int> _usersIds;

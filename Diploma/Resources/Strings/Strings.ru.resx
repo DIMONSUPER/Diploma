@@ -88,4 +88,16 @@
 		<value>Ничего не найдено</value>
 		<comment>Nothing found</comment>
 	</data>
+	<data name="DailyRemainder" xml:space="preserve">
+		<value>Ежедневное напоминание</value>
+		<comment>Daily remainder</comment>
+	</data>
+	<data name="ContinueYourStudying" xml:space="preserve">
+		<value>Продолжай учиться!</value>
+		<comment>Keep up with your studying!</comment>
+	</data>
+	<data name="ReminderTime" xml:space="preserve">
+		<value>Время напоминания:</value>
+		<comment>Reminder time:</comment>
+	</data>
 </root>

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Diploma.Events;
 using Diploma.Models;
 using Diploma.Services.Authorization;
 using Diploma.Services.Course;
 using Diploma.Services.Mapper;
 using Diploma.Services.User;
+using Prism.Events;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
@@ -23,16 +24,19 @@ namespace Diploma.ViewModels.Tabs
 
         public HomePageViewModel(
             INavigationService navigationService,
+            IEventAggregator eventAggregator,
             IUserService userService,
             IAuthorizationService authorizationService,
             ICoursesService coursesService,
             IMapperService mapperService)
-            : base(navigationService)
+            : base(navigationService, eventAggregator)
         {
             _userService = userService;
             _authorizationService = authorizationService;
             _coursesService = coursesService;
             _mapperService = mapperService;
+
+            EventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(OnLanguageChanged);
 
             CurrentState = LayoutState.Loading;
         }
@@ -79,7 +83,7 @@ namespace Diploma.ViewModels.Tabs
 
             if (coursesResponse.IsSuccess)
             {
-                var courses = await MapCoursesAsync(coursesResponse.Result);
+                var courses = await _coursesService.ConvertToBindableCourses(coursesResponse.Result);
 
                 foreach (var group in courses.GroupBy(x => x.Category).OrderBy(x => x.Key))
                 {
@@ -101,31 +105,11 @@ namespace Diploma.ViewModels.Tabs
             }
         }
 
-        private async Task<IEnumerable<CourseBindableModel>> MapCoursesAsync(IEnumerable<CourseModel> courses)
+        private async void OnLanguageChanged(string language)
         {
-            var mappedCourses = await _mapperService.MapRangeAsync<CourseBindableModel>(courses);
+            HomeItems = new();
 
-            foreach (var course in mappedCourses)
-            {
-                course.Users = new(await GetUsersForCourseAsync(course));
-            }
-
-            return mappedCourses;
-        }
-
-        private async Task<IEnumerable<UserBindableModel>> GetUsersForCourseAsync(CourseBindableModel course)
-        {
-            var result = Enumerable.Empty<UserBindableModel>();
-
-            var users = await _userService.GetAllUsersAsync();
-
-            if (users.IsSuccess)
-            {
-                var neededUsers = users.Result.Where(x => course.UsersIds.Contains(x.Id));
-                result = await _mapperService.MapRangeAsync<UserBindableModel>(neededUsers);
-            }
-
-            return result;
+            await UpdateCoursesAsync();
         }
 
         #endregion

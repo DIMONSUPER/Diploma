@@ -1,4 +1,6 @@
-﻿using Diploma.Resources.Strings;
+﻿using System.Globalization;
+using Acr.UserDialogs;
+using Diploma.Resources.Strings;
 using Diploma.Services.Authorization;
 using Diploma.Services.Course;
 using Diploma.Services.Mapper;
@@ -12,6 +14,7 @@ using Diploma.ViewModels.Tabs;
 using Diploma.Views;
 using Diploma.Views.Modal;
 using Diploma.Views.Tabs;
+using Plugin.LocalNotification;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -42,6 +45,9 @@ namespace Diploma
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterInstance(UserDialogs.Instance);
+            containerRegistry.RegisterInstance(NotificationCenter.Current);
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainTabbedPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
@@ -62,14 +68,31 @@ namespace Diploma
 
         protected override async void OnInitialized()
         {
+            var userSettings = Container.Resolve<ISettingsManager>().UserSettings;
+            LocalizationResourceManager.Current.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfoFromLanguage(userSettings.CoursesLanguage);
             LocalizationResourceManager.Current.PropertyChanged += (sender, e) => Strings.Culture = LocalizationResourceManager.Current.CurrentCulture;
             LocalizationResourceManager.Current.Init(Strings.ResourceManager);
 
             InitializeComponent();
 
-            Resolve<IStyleService>().ChangeThemeTo((OSAppTheme)Container.Resolve<ISettingsManager>().UserSettings.AppTheme);
+            Resolve<IStyleService>().ChangeThemeTo((OSAppTheme)userSettings.AppTheme);
 
             await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{Constants.PageConstants.MainTabbedPage}");
+        }
+
+        #endregion
+
+        #region -- Private helpers --
+
+        private CultureInfo GetCultureInfoFromLanguage(string language)
+        {
+            return language switch
+            {
+                Constants.LanguageConstansts.English => new("en-US"),
+                Constants.LanguageConstansts.Russian => new("ru-RU"),
+                Constants.LanguageConstansts.Ukrainian => new("uk-UA"),
+                _ => throw new System.NotImplementedException(),
+            };
         }
 
         #endregion

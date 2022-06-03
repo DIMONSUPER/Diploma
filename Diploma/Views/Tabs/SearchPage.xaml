@@ -4,12 +4,28 @@
                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                          xmlns:vms="clr-namespace:Diploma.ViewModels.Tabs"
                          xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                         xmlns:models="clr-namespace:Diploma.Models"
+                         xmlns:cells="clr-namespace:Diploma.Cells"
                          x:Class="Diploma.Views.Tabs.SearchPage"
                          x:DataType="{x:Type vms:SearchPageViewModel}">
 
+    <tabs:BaseTabContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="warningLabelStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i6}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </tabs:BaseTabContentPage.Resources>
+
     <tabs:BaseTabContentPage.Content>
 
-        <Grid BackgroundColor="{x:DynamicResource cbg_i1}">
+        <Grid BackgroundColor="{x:DynamicResource cbg_i1}"
+              RowSpacing="0"
+              RowDefinitions="Auto, *">
 
             <SearchBar VerticalOptions="Start"
                        HorizontalTextAlignment="Start"
@@ -17,10 +33,94 @@
                        FontSize="{x:DynamicResource tsize_i4}"
                        PlaceholderColor="{x:DynamicResource tcolor_i6}"
                        BackgroundColor="Transparent"
-                       Placeholder="{xct:Translate SearchCourses}"/>
+                       IsEnabled="True"
+                       Placeholder="{xct:Translate SearchCourses}"
+                       Text="{Binding CurrentQuery}"
+                       SearchCommand="{Binding SearchCommand}"/>
+
+            <Grid Grid.Row="1"
+                  xct:StateLayout.CurrentState="{Binding CurrentState}"
+                  xct:StateLayout.AnimateStateChanges="True">
+
+                <xct:StateLayout.StateViews>
+
+                    <!-- NONE STATE -->
+                    <xct:StateView StateKey="None"/>
+
+                    <!-- LOADING STATE -->
+                    <xct:StateView StateKey="Loading"
+                                   VerticalOptions="FillAndExpand">
+
+                        <ActivityIndicator/>
+
+                    </xct:StateView>
+
+                    <!-- EMPTY STATE -->
+                    <xct:StateView StateKey="Empty"
+                                   VerticalOptions="FillAndExpand">
+
+                        <Label Text="{xct:Translate NothingFound}"
+                               Style="{x:DynamicResource warningLabelStyle}"/>
+
+                    </xct:StateView>
+
+                    <!-- NO INTERNET STATE -->
+                    <xct:StateView StateKey="Error"
+                                   VerticalOptions="FillAndExpand">
+
+                        <Label Text="{xct:Translate NoInternetConnection}"
+                               Style="{x:DynamicResource warningLabelStyle}"/>
+
+                    </xct:StateView>
+
+                    <!-- SUCCESS STATE -->
+                    <xct:StateView StateKey="Success"
+                                   VerticalOptions="FillAndExpand">
+
+                        <CollectionView ItemSizingStrategy="MeasureFirstItem"
+                                        ItemsUpdatingScrollMode="KeepScrollOffset"
+                                        SelectionMode="None"
+                                        ItemsSource="{Binding SearchResults}"
+                                        VerticalScrollBarVisibility="Never">
+
+                            <CollectionView.ItemsLayout>
+
+                                <LinearItemsLayout Orientation="Vertical"
+                                                   ItemSpacing="20"/>
+
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+
+                                <DataTemplate x:DataType="{x:Type models:CourseBindableModel}">
+
+                                    <Grid>
+
+                                        <cells:SearchCourseCell/>
+
+                                    </Grid>
+
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                            <CollectionView.Footer>
+
+                                <BoxView HeightRequest="20"
+                                         Color="{x:DynamicResource cbg_i1}"/>
+
+                            </CollectionView.Footer>
+
+                        </CollectionView>
+
+                    </xct:StateView>
+
+                </xct:StateLayout.StateViews>
+
+            </Grid>
 
         </Grid>
-        
+
     </tabs:BaseTabContentPage.Content>
 
 </tabs:BaseTabContentPage>

@@ -3,22 +3,32 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Diploma.Helpers;
+using Diploma.Resources.Strings;
 using Diploma.Services.Settings;
 using Diploma.Views.Modal;
+using Plugin.LocalNotification;
+using Prism.Events;
 using Prism.Navigation;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace Diploma.ViewModels.Tabs
 {
     public class ProfilePageViewModel : BaseTabViewModel
     {
         private readonly ISettingsManager _settingsManager;
+        private readonly INotificationService _notificationService;
 
         public ProfilePageViewModel(
             INavigationService navigationService,
-            ISettingsManager settingsManager)
-            : base(navigationService)
+            IEventAggregator eventAggregator,
+            ISettingsManager settingsManager,
+            INotificationService notificationService)
+            : base(navigationService, eventAggregator)
         {
             _settingsManager = settingsManager;
+            _notificationService = notificationService;
+
+            CurrentState = LayoutState.Loading;
         }
 
         #region -- Public properties --
@@ -51,6 +61,13 @@ namespace Diploma.ViewModels.Tabs
             set => SetProperty(ref _shouldNotifyMe, value);
         }
 
+        private TimeSpan _notificationTime;
+        public TimeSpan NotificationTime
+        {
+            get => _notificationTime;
+            set => SetProperty(ref _notificationTime, value);
+        }
+
         private ICommand _settingsButtonTappedCommand;
         public ICommand SettingsButtonTappedCommand => _settingsButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSettingsButtonTappedCommandAsync);
 
@@ -69,7 +86,7 @@ namespace Diploma.ViewModels.Tabs
         {
             base.OnPropertyChanged(args);
 
-            if (args.PropertyName is nameof(ShouldNotifyMe))
+            if (args.PropertyName is nameof(ShouldNotifyMe) or nameof(NotificationTime))
             {
                 SetNotification();
             }
@@ -86,7 +103,26 @@ namespace Diploma.ViewModels.Tabs
 
         private void SetNotification()
         {
+            _notificationService.CancelAll();
+
+            if (ShouldNotifyMe)
+            {
+                _notificationService.Show(new NotificationRequest()
+                {
+                    BadgeNumber = 1,
+                    Description = Strings.ContinueYourStudying,
+                    Title = Strings.DailyRemainder,
+                    NotificationId = 16,
+                    Schedule = new()
+                    {
+                        NotifyTime = DateTime.Today.Add(NotificationTime),
+                        RepeatType = NotificationRepeat.Daily,
+                    }
+                });
+            }
+
             _settingsManager.UserSettings.ShouldNotifyMe = ShouldNotifyMe;
+            _settingsManager.UserSettings.NotificationTime = NotificationTime;
         }
 
         private void SetUserInformation()
@@ -94,7 +130,10 @@ namespace Diploma.ViewModels.Tabs
             FirstName = "Dima";
             LastName = "Fedchenko";
             Description = "Fourth-year student of Dnypro National University";
-            ShouldNotifyMe = _settingsManager.UserSettings.ShouldNotifyMe;
+            _shouldNotifyMe = _settingsManager.UserSettings.ShouldNotifyMe;
+            _notificationTime = _settingsManager.UserSettings.NotificationTime;
+
+            CurrentState = LayoutState.Success;
         }
 
         #endregion

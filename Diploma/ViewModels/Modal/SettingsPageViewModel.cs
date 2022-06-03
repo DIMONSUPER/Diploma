@@ -1,11 +1,15 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Diploma.Events;
 using Diploma.Helpers;
 using Diploma.Services.Settings;
 using Diploma.Services.Style;
+using Prism.Events;
 using Prism.Navigation;
+using Xamarin.CommunityToolkit.Helpers;
 
 namespace Diploma.ViewModels.Modal
 {
@@ -16,9 +20,10 @@ namespace Diploma.ViewModels.Modal
 
         public SettingsPageViewModel(
             INavigationService navigationService,
+            IEventAggregator eventAggregator,
             ISettingsManager settingsManager,
             IStyleService styleService)
-            : base(navigationService)
+            : base(navigationService, eventAggregator)
         {
             _settingsManager = settingsManager;
             _styleService = styleService;
@@ -76,13 +81,26 @@ namespace Diploma.ViewModels.Modal
             }
             else if (args.PropertyName == nameof(SelectedLanguage) && SelectedLanguage is not null)
             {
+                LocalizationResourceManager.Current.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture = CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfoFromLanguage(SelectedLanguage);
                 _settingsManager.UserSettings.CoursesLanguage = SelectedLanguage;
+                EventAggregator.GetEvent<LanguageChangedEvent>().Publish(SelectedLanguage);
             }
         }
 
         #endregion
 
         #region -- Private helpers --
+
+        private CultureInfo GetCultureInfoFromLanguage(string language)
+        {
+            return language switch
+            {
+                Constants.LanguageConstansts.English => new("en-US"),
+                Constants.LanguageConstansts.Russian => new("ru-RU"),
+                Constants.LanguageConstansts.Ukrainian => new("uk-UA"),
+                _ => throw new System.NotImplementedException(),
+            };
+        }
 
         private Task OnBackButtonTappedCommandAsync()
         {

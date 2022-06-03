@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Diploma.Helpers;
 using Diploma.Models;
 using Diploma.Services.Rest;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Diploma.Services.User
@@ -24,17 +26,34 @@ namespace Diploma.Services.User
             {
                 var url = $"{Constants.BASE_URL}/users";
 
-                var response = await _restService.GetAsync<JToken>(url);
+                var response = await _restService.GetAsync<IEnumerable<UserModel>>(url);
 
-                var result = JTokenHelper.ParseFromJToken<UserModel>(response);
+                if (response is null)
+                {
+                    onFailure("No users");
+                }
 
-                return result;
+                return response;
             });
         }
 
         public Task<AOResult<UserModel>> GetUserByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return AOResult.ExecuteTaskAsync(async onFailure =>
+            {
+                var url = $"{Constants.BASE_URL}/users?filters[id][$eq]={id}";
+
+                var response = await _restService.GetAsync<IEnumerable<UserModel>>(url);
+
+                var result = response.FirstOrDefault();
+
+                if (result is null)
+                {
+                    onFailure("User not found");
+                }
+
+                return result;
+            });
         }
 
         public Task<AOResult<UserModel>> RegisterNewUserAsync(UserModel userModel)

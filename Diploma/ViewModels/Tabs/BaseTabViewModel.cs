@@ -1,5 +1,6 @@
 ﻿using System;
 using Prism;
+using Prism.Events;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.Helpers;
 
@@ -10,8 +11,9 @@ namespace Diploma.ViewModels.Tabs
         private readonly DelegateWeakEventManager _isActiveChangedEventManager = new();
 
         public BaseTabViewModel(
-            INavigationService navigationService)
-            : base(navigationService)
+            INavigationService navigationService,
+            IEventAggregator eventAggregator)
+            : base(navigationService, eventAggregator)
         {
         }
 

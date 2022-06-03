@@ -15,10 +15,16 @@ namespace Diploma.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
+            Plugin.LocalNotification.NotificationCenter.AskPermission();
 
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void WillEnterForeground(UIApplication uiApplication)
+        {
+            Plugin.LocalNotification.NotificationCenter.ResetApplicationIconBadgeNumber(uiApplication);
         }
 
         #endregion

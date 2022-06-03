@@ -97,6 +97,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Plugin.LocalNotification" Version="9.2.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Prism.Unity.Forms" />
@@ -135,6 +137,9 @@
     <None Remove="Services\Authorization\" />
     <None Remove="Services\Course\" />
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Events\" />
+    <None Remove="Plugin.LocalNotification" />
+    <None Remove="Acr.UserDialogs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -160,6 +165,7 @@
     <Folder Include="Services\Repository\" />
     <Folder Include="Services\Authorization\" />
     <Folder Include="Services\Course\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Font_Awesome_5_Regular_400.otf" />

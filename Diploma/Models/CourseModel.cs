@@ -42,6 +42,9 @@ namespace Diploma.Models
         [JsonProperty("category")]
         public string Category { get; set; }
 
+        [JsonProperty("is_visible")]
+        public bool IsVisible { get; set; }
+
         [Ignore]
         [JsonProperty("users")]
         public IEnumerable<int> UsersIds { get; set; }

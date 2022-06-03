@@ -88,4 +88,16 @@
 		<value>Nothing found</value>
 		<comment>Nothing found</comment>
 	</data>
+	<data name="DailyRemainder" xml:space="preserve">
+		<value>Daily remainder</value>
+		<comment>Daily remainder</comment>
+	</data>
+	<data name="ContinueYourStudying" xml:space="preserve">
+		<value>Keep up with your studying!</value>
+		<comment>Keep up with your studying!</comment>
+	</data>
+	<data name="ReminderTime" xml:space="preserve">
+		<value>Reminder time:</value>
+		<comment>Reminder time:</comment>
+	</data>
 </root>

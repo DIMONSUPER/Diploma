@@ -3,44 +3,46 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:models="clr-namespace:Diploma.Models"
        xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-       x:Class="Diploma.Cells.CarouselCourseCell"
        x:DataType="{x:Type models:CourseBindableModel}"
        IsClippedToBounds="True"
        HasShadow="False"
        Padding="0"
-       WidthRequest="250"
-       BackgroundColor="{x:DynamicResource cbg_i3}">
+       HeightRequest="180"
+       WidthRequest="260"
+       HorizontalOptions="CenterAndExpand"
+       BackgroundColor="{x:DynamicResource cbg_i3}"
+       x:Class="Diploma.Cells.SearchCourseCell">
 
     <Frame.Resources>
-
         <ResourceDictionary>
-
             <Style x:Key="titleLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{x:DynamicResource tsize_i4}"/>
                 <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
-                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
-
         </ResourceDictionary>
-
     </Frame.Resources>
 
-    <StackLayout Spacing="0"
-                 Orientation="Vertical"
-                 Padding="0">
+    <Frame.Content>
 
-        <ff:CachedImage HeightRequest="100"
-                        Aspect="Fill"
-                        Source="{Binding ImageUrl}"/>
+        <StackLayout Spacing="0"
+                     Orientation="Vertical"
+                     Padding="0">
 
-        <Label Text="{Binding Name}"
-               Margin="10"
-               MaxLines="2"
-               LineBreakMode="TailTruncation"
-               Style="{x:DynamicResource titleLabelStyle}"/>
+            <ff:CachedImage Aspect="Fill"
+                            HeightRequest="140"
+                            Source="{Binding ImageUrl}"/>
 
-    </StackLayout>
+            <Label Text="{Binding Name}"
+                   Margin="10"
+                   MaxLines="1"
+                   LineBreakMode="TailTruncation"
+                   Style="{x:DynamicResource titleLabelStyle}"/>
+
+        </StackLayout>
+
+    </Frame.Content>
 
 </Frame>

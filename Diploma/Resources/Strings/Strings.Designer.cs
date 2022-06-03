@@ -160,5 +160,23 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("NothingFound", resourceCulture);
             }
         }
+        
+        internal static string DailyRemainder {
+            get {
+                return ResourceManager.GetString("DailyRemainder", resourceCulture);
+            }
+        }
+        
+        internal static string ContinueYourStudying {
+            get {
+                return ResourceManager.GetString("ContinueYourStudying", resourceCulture);
+            }
+        }
+        
+        internal static string ReminderTime {
+            get {
+                return ResourceManager.GetString("ReminderTime", resourceCulture);
+            }
+        }
     }
 }

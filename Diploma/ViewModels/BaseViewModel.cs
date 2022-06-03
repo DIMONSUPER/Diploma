@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Prism.AppModel;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -9,9 +10,12 @@ namespace Diploma.ViewModels
 {
     public class BaseViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware, IInitialize, IInitializeAsync, IDestructible
     {
-        public BaseViewModel(INavigationService navigationService)
+        public BaseViewModel(
+            INavigationService navigationService,
+            IEventAggregator eventAggregator)
         {
             NavigationService = navigationService;
+            EventAggregator = eventAggregator;
 
             Connectivity.ConnectivityChanged += OnConnectionChanged;
         }
@@ -32,6 +36,8 @@ namespace Diploma.ViewModels
         #region -- Protected properties --
 
         protected INavigationService NavigationService { get; }
+
+        protected IEventAggregator EventAggregator { get; }
 
         #endregion
 
