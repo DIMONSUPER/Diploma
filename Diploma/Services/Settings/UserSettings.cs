@@ -9,7 +9,7 @@ namespace Diploma.Services.Settings
 
         public int AppTheme
         {
-            get => Preferences.Get(nameof(AppTheme), 1);
+            get => Preferences.Get(nameof(AppTheme), 2);
             set => Preferences.Set(nameof(AppTheme), value);
         }
 

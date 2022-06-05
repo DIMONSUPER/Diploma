@@ -100,4 +100,29 @@
 		<value>Reminder time:</value>
 		<comment>Reminder time:</comment>
 	</data>
+	<!--TODO-->
+	<data name="IncorrectLoginOrPassword" xml:space="preserve">
+		<value>Login or password is incorrect</value>
+		<comment>Login or password is incorrect</comment>
+	</data>
+	<data name="UsernameOrEmail" xml:space="preserve">
+		<value>Username or email</value>
+		<comment>Username or email</comment>
+	</data>
+	<data name="Password" xml:space="preserve">
+		<value>Password</value>
+		<comment>Password</comment>
+	</data>
+	<data name="SignIn" xml:space="preserve">
+		<value>Sign in</value>
+		<comment>Sign in</comment>
+	</data>
+	<data name="SignUp" xml:space="preserve">
+		<value>Sign up</value>
+		<comment>Sign up</comment>
+	</data>
+	<data name="LogOutMessage" xml:space="preserve">
+		<value>Are you sure you want to log out?</value>
+		<comment>Are you sure you want to log out?</comment>
+	</data>
 </root>

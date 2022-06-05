@@ -2,9 +2,13 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Diploma.Helpers;
+using Diploma.Models;
 using Diploma.Resources.Strings;
+using Diploma.Services.Authorization;
 using Diploma.Services.Settings;
+using Diploma.Services.User;
 using Diploma.Views.Modal;
 using Plugin.LocalNotification;
 using Prism.Events;
@@ -17,16 +21,25 @@ namespace Diploma.ViewModels.Tabs
     {
         private readonly ISettingsManager _settingsManager;
         private readonly INotificationService _notificationService;
+        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserDialogs _userDialogs;
+        private readonly IUserService _userService;
 
         public ProfilePageViewModel(
             INavigationService navigationService,
             IEventAggregator eventAggregator,
             ISettingsManager settingsManager,
-            INotificationService notificationService)
+            INotificationService notificationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs,
+            IUserService userService)
             : base(navigationService, eventAggregator)
         {
             _settingsManager = settingsManager;
             _notificationService = notificationService;
+            _authorizationService = authorizationService;
+            _userDialogs = userDialogs;
+            _userService = userService;
 
             CurrentState = LayoutState.Loading;
         }
@@ -68,33 +81,119 @@ namespace Diploma.ViewModels.Tabs
             set => SetProperty(ref _notificationTime, value);
         }
 
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
+        }
+
+        private string _identifier;
+        public string Identifier
+        {
+            get => _identifier;
+            set => SetProperty(ref _identifier, value);
+        }
+
+        private bool _isSignInButtonEnabled;
+        public bool IsSignInButtonEnabled
+        {
+            get => _isSignInButtonEnabled;
+            set => SetProperty(ref _isSignInButtonEnabled, value);
+        }
+
         private ICommand _settingsButtonTappedCommand;
         public ICommand SettingsButtonTappedCommand => _settingsButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSettingsButtonTappedCommandAsync);
+
+        private ICommand _signInTappedCommand;
+        public ICommand SignInTappedCommand => _signInTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignInTappedCommandAsync);
+
+        private ICommand _signOutButtonTappedCommand;
+        public ICommand SignOutButtonTappedCommand => _signOutButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignOutButtonTappedCommandAsync);
 
         #endregion
 
         #region -- Overrides --
 
-        public override void Initialize(INavigationParameters parameters)
+        public override async void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
 
-            SetUserInformation();
+            if (_settingsManager.IsAuthorized)
+            {
+                CurrentState = LayoutState.Success;
+
+                var currentUserResponse = await _userService.GetUserByIdAsync(_settingsManager.AuthorizationSettings.UserId);
+
+                if (currentUserResponse.IsSuccess)
+                {
+                    SetUserInformation(currentUserResponse.Result);
+                }
+            }
+            else
+            {
+                CurrentState = LayoutState.Empty;
+            }
         }
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
 
-            if (args.PropertyName is nameof(ShouldNotifyMe) or nameof(NotificationTime))
+            if (args.PropertyName is nameof(Identifier) or nameof(Password))
             {
-                SetNotification();
+                IsSignInButtonEnabled = !string.IsNullOrWhiteSpace(Identifier?.Trim()) &&
+                    !string.IsNullOrWhiteSpace(Password) &&
+                    Identifier.Trim().Length > 4;
             }
         }
 
         #endregion
 
         #region -- Private helpers --
+
+        private async Task OnSignOutButtonTappedCommandAsync()
+        {
+            var isConfirmed = await _userDialogs.ConfirmAsync(Strings.LogOutMessage);
+
+            if (isConfirmed)
+            {
+                _settingsManager.AuthorizationSettings.ResetSettings();
+
+                CurrentState = LayoutState.Empty;
+            }
+        }
+
+        private async Task OnSignInTappedCommandAsync()
+        {
+            CurrentState = LayoutState.Loading;
+
+            if (IsInternetConnected)
+            {
+                var loginResponse = await _authorizationService.LoginAsync(Identifier.Trim(), Password);
+
+                if (loginResponse.IsSuccess)
+                {
+                    SetUserInformation(loginResponse.Result);
+                    CurrentState = LayoutState.Success;
+                    Identifier = default;
+                    Password = default;
+                }
+                else if (IsInternetConnected)
+                {
+                    _userDialogs.Alert(Strings.IncorrectLoginOrPassword);
+                    CurrentState = LayoutState.Empty;
+                }
+                else
+                {
+                    await _userDialogs.AlertAsync(Strings.NoInternetConnection);
+                }
+            }
+            else
+            {
+                await _userDialogs.AlertAsync(Strings.NoInternetConnection);
+            }
+        }
 
         private Task OnSettingsButtonTappedCommandAsync()
         {
@@ -125,13 +224,13 @@ namespace Diploma.ViewModels.Tabs
             _settingsManager.UserSettings.NotificationTime = NotificationTime;
         }
 
-        private void SetUserInformation()
+        private void SetUserInformation(UserModel user)
         {
-            FirstName = "Dima";
-            LastName = "Fedchenko";
-            Description = "Fourth-year student of Dnypro National University";
-            _shouldNotifyMe = _settingsManager.UserSettings.ShouldNotifyMe;
-            _notificationTime = _settingsManager.UserSettings.NotificationTime;
+            FirstName = user.Name;
+            LastName = user.Surname;
+            Description = user.Description;
+            //_shouldNotifyMe = _settingsManager.UserSettings.ShouldNotifyMe;
+            //_notificationTime = _settingsManager.UserSettings.NotificationTime;
 
             CurrentState = LayoutState.Success;
         }

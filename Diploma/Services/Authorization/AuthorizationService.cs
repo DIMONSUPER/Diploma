@@ -54,7 +54,7 @@ namespace Diploma.Services.Authorization
 
                     _settingsManager.AuthorizationSettings.AuthorizeUser(jwtToken, result);
 
-                    await _repositoryService.UpdateAsync(result);
+                    await _repositoryService.SaveOrUpdateAsync(result);
                 }
                 else
                 {

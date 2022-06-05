@@ -56,9 +56,12 @@
                 </xct:StateView>
 
                 <!-- UNAUTHORIZED STATE -->
-                <xct:StateView>
+                <xct:StateView StateKey="Empty"
+                               VerticalOptions="FillAndExpand">
 
-                    <Grid>
+                    <Grid RowDefinitions="40, *"
+                          RowSpacing="10"
+                          Padding="20,10,10,20">
 
                         <StackLayout Grid.Row="0"
                                      Orientation="Horizontal"
@@ -68,6 +71,28 @@
                             <Label Text="{x:Static helpers:FontIcons.Cog}"
                                    Style="{x:DynamicResource iconStyle}"
                                    xct:TouchEffect.Command="{Binding SettingsButtonTappedCommand}"/>
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1"
+                                     Orientation="Vertical"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+
+                            <Entry Placeholder="{xct:Translate UsernameOrEmail}"
+                                   Text="{Binding Identifier}"/>
+
+                            <Entry Placeholder="{xct:Translate Password}"
+                                   IsPassword="True"
+                                   Text="{Binding Password}"
+                                   x:Name="passwordEntry"/>
+
+                            <Button Text="{xct:Translate SignIn}"
+                                    Command="{Binding SignInTappedCommand}"
+                                    IsEnabled="{Binding IsSignInButtonEnabled}"/>
+
+                            <Button Text="{xct:Translate SignUp}"
+                                    Command="{Binding SignUpTappedCommand}"/>
 
                         </StackLayout>
 
@@ -99,6 +124,10 @@
                                 <Label Text="{x:Static helpers:FontIcons.Cog}"
                                        Style="{x:DynamicResource iconStyle}"
                                        xct:TouchEffect.Command="{Binding SettingsButtonTappedCommand}"/>
+
+                                <Label Text="{x:Static helpers:FontIcons.SignOutAlt}"
+                                       Style="{x:DynamicResource iconStyle}"
+                                       xct:TouchEffect.Command="{Binding SignOutButtonTappedCommand}"/>
 
                             </StackLayout>
 

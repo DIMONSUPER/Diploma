@@ -178,5 +178,41 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("ReminderTime", resourceCulture);
             }
         }
+        
+        internal static string IncorrectLoginOrPassword {
+            get {
+                return ResourceManager.GetString("IncorrectLoginOrPassword", resourceCulture);
+            }
+        }
+        
+        internal static string UsernameOrEmail {
+            get {
+                return ResourceManager.GetString("UsernameOrEmail", resourceCulture);
+            }
+        }
+        
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        internal static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        internal static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        internal static string LogOutMessage {
+            get {
+                return ResourceManager.GetString("LogOutMessage", resourceCulture);
+            }
+        }
     }
 }
