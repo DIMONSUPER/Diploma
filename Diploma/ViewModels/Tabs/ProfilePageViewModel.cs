@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
+using Diploma.Events;
 using Diploma.Helpers;
 using Diploma.Models;
 using Diploma.Resources.Strings;
@@ -36,6 +36,8 @@ namespace Diploma.ViewModels.Tabs
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
             _userService = userService;
+
+            EventAggregator.GetEvent<AuthChangedEvent>().Subscribe(OnAuthChangedEvent);
 
             CurrentState = LayoutState.Loading;
         }
@@ -129,13 +131,39 @@ namespace Diploma.ViewModels.Tabs
             {
                 IsSignInButtonEnabled = !string.IsNullOrWhiteSpace(Identifier?.Trim()) &&
                     !string.IsNullOrWhiteSpace(Password) &&
-                    Identifier.Trim().Length > 4;
+                    Identifier.Trim().Length >= 4;
             }
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+
+            EventAggregator.GetEvent<AuthChangedEvent>().Subscribe(OnAuthChangedEvent);
         }
 
         #endregion
 
         #region -- Private helpers --
+
+        private async void OnAuthChangedEvent(bool isLoggedIn)
+        {
+            if (isLoggedIn)
+            {
+                CurrentState = LayoutState.Success;
+
+                var currentUserResponse = await _userService.GetUserByIdAsync(_settingsManager.AuthorizationSettings.UserId);
+
+                if (currentUserResponse.IsSuccess)
+                {
+                    SetUserInformation(currentUserResponse.Result);
+                }
+            }
+            else
+            {
+                CurrentState = LayoutState.Empty;
+            }
+        }
 
         private Task OnSignUpButtonTappedCommandAsync()
         {
@@ -176,12 +204,14 @@ namespace Diploma.ViewModels.Tabs
                 }
                 else
                 {
-                    await _userDialogs.AlertAsync(Strings.NoInternetConnection);
+                    _userDialogs.Alert(Strings.NoInternetConnection);
+                    CurrentState = LayoutState.Empty;
                 }
             }
             else
             {
-                await _userDialogs.AlertAsync(Strings.NoInternetConnection);
+                _userDialogs.Alert(Strings.NoInternetConnection);
+                CurrentState = LayoutState.Empty;
             }
         }
 

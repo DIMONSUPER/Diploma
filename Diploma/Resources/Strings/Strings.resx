@@ -100,6 +100,18 @@
 		<value>Reminder time:</value>
 		<comment>Reminder time:</comment>
 	</data>
+	<data name="English" xml:space="preserve">
+		<value>English</value>
+		<comment>English</comment>
+	</data>
+	<data name="Russian" xml:space="preserve">
+		<value>Russian</value>
+		<comment>Russian</comment>
+	</data>
+	<data name="Ukrainian" xml:space="preserve">
+		<value>Ukrainian</value>
+		<comment>Ukrainian</comment>
+	</data>
 	<!--TODO-->
 	<data name="IncorrectLoginOrPassword" xml:space="preserve">
 		<value>Login or password is incorrect</value>
@@ -141,8 +153,44 @@
 		<value>User with such email already exists</value>
 		<comment>User with such email already exists</comment>
 	</data>
-		<data name="EmailDoesntExist" xml:space="preserve">
+	<data name="UserWithSuchUsername" xml:space="preserve">
+		<value>User with such username already exists</value>
+		<comment>User with such username already exists</comment>
+	</data>
+	<data name="UserMustContain" xml:space="preserve">
+		<value>Username must contain at least 4 characters</value>
+		<comment>Username must contain at least 4 characters</comment>
+	</data>
+	<data name="EmailDoesntExist" xml:space="preserve">
 		<value>Email doesn't exist</value>
 		<comment>Email doesn't exist</comment>
+	</data>
+	<data name="Student" xml:space="preserve">
+		<value>Student</value>
+		<comment>Student</comment>
+	</data>
+	<data name="Teacher" xml:space="preserve">
+		<value>Teacher</value>
+		<comment>Teacher</comment>
+	</data>
+	<data name="FirstName" xml:space="preserve">
+		<value>First name</value>
+		<comment>First name</comment>
+	</data>
+	<data name="LastName" xml:space="preserve">
+		<value>Last name</value>
+		<comment>Last name</comment>
+	</data>
+	<data name="PasswordMustContain" xml:space="preserve">
+		<value>Password must contain at least 6 characters</value>
+		<comment>Password must contain at least 6 characters</comment>
+	</data>
+	<data name="PasswordsDontMatch" xml:space="preserve">
+		<value>Passwords don't match</value>
+		<comment>Passwords don't match</comment>
+	</data>
+	<data name="Description" xml:space="preserve">
+		<value>Description</value>
+		<comment>Description</comment>
 	</data>
 </root>

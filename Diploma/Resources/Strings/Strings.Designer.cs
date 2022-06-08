@@ -179,6 +179,24 @@ namespace Diploma.Resources.Strings {
             }
         }
         
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        internal static string Russian {
+            get {
+                return ResourceManager.GetString("Russian", resourceCulture);
+            }
+        }
+        
+        internal static string Ukrainian {
+            get {
+                return ResourceManager.GetString("Ukrainian", resourceCulture);
+            }
+        }
+        
         internal static string IncorrectLoginOrPassword {
             get {
                 return ResourceManager.GetString("IncorrectLoginOrPassword", resourceCulture);
@@ -239,9 +257,63 @@ namespace Diploma.Resources.Strings {
             }
         }
         
+        internal static string UserWithSuchUsername {
+            get {
+                return ResourceManager.GetString("UserWithSuchUsername", resourceCulture);
+            }
+        }
+        
+        internal static string UserMustContain {
+            get {
+                return ResourceManager.GetString("UserMustContain", resourceCulture);
+            }
+        }
+        
         internal static string EmailDoesntExist {
             get {
                 return ResourceManager.GetString("EmailDoesntExist", resourceCulture);
+            }
+        }
+        
+        internal static string Student {
+            get {
+                return ResourceManager.GetString("Student", resourceCulture);
+            }
+        }
+        
+        internal static string Teacher {
+            get {
+                return ResourceManager.GetString("Teacher", resourceCulture);
+            }
+        }
+        
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordMustContain {
+            get {
+                return ResourceManager.GetString("PasswordMustContain", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordsDontMatch {
+            get {
+                return ResourceManager.GetString("PasswordsDontMatch", resourceCulture);
+            }
+        }
+        
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
     }

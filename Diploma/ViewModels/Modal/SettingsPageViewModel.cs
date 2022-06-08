@@ -152,7 +152,7 @@ namespace Diploma.ViewModels.Modal
                 Constants.LanguageConstansts.English => new("en-US"),
                 Constants.LanguageConstansts.Russian => new("ru-RU"),
                 Constants.LanguageConstansts.Ukrainian => new("uk-UA"),
-                _ => throw new System.NotImplementedException(),
+                _ => throw new NotImplementedException(),
             };
         }
 

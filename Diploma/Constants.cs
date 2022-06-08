@@ -17,8 +17,8 @@
         public static class LanguageConstansts
         {
             public const string English = nameof(English);
-            public const string Russian = nameof(Russian);
-            public const string Ukrainian = nameof(Ukrainian);
+            public const string Russian = "Русский";
+            public const string Ukrainian = "Українська";
         }
     }
 }

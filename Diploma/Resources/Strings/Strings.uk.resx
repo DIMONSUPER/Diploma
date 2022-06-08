@@ -100,4 +100,16 @@
 		<value>Час нагадування:</value>
 		<comment>Reminder time:</comment>
 	</data>
+	<data name="English" xml:space="preserve">
+		<value>Англійська</value>
+		<comment>English</comment>
+	</data>
+	<data name="Russian" xml:space="preserve">
+		<value>Російська</value>
+		<comment>Russian</comment>
+	</data>
+	<data name="Ukrainian" xml:space="preserve">
+		<value>Українська</value>
+		<comment>Ukrainian</comment>
+	</data>
 </root>

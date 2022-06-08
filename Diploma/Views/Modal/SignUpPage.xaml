@@ -27,6 +27,26 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
 
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+                <Setter Property="MaxLength" Value="32"/>
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+                <Setter Property="MaxLength" Value="64"/>
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+            </Style>
+
         </ResourceDictionary>
 
     </modal:BaseModalContentPage.Resources>
@@ -37,16 +57,8 @@
 
             <Grid RowDefinitions="60, 1, *"
                   ColumnDefinitions="40, *"
+                  Margin="0,10,0,0"
                   RowSpacing="0">
-
-                <Label Grid.Row="0"
-                       Grid.ColumnSpan="2"
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       Text="{xct:Translate SignUp}"
-                       TextColor="{x:DynamicResource cbg_i4}"
-                       FontSize="{x:DynamicResource tsize_i5}"
-                       FontAttributes="Bold"/>
 
                 <Label Grid.Row="0"
                        Grid.Column="0"
@@ -56,36 +68,119 @@
                        Style="{x:DynamicResource iconStyle}"
                        xct:TouchEffect.Command="{Binding BackButtonTappedCommand}"/>
 
+                <Button Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="End"
+                        Text="{xct:Translate SignUp}"
+                        TextColor="{x:DynamicResource cbg_i4}"
+                        FontSize="{x:DynamicResource tsize_i5}"
+                        FontAttributes="Bold"
+                        BackgroundColor="Transparent"
+                        Margin="0,0,20,0"
+                        VerticalOptions="Center"
+                        IsEnabled="{Binding IsSignUpButtonEnabled}"
+                        Command="{Binding SignUpButtonTappedCommand}">
+                    <Button.Triggers>
+                        <DataTrigger Binding="{Binding IsSignUpButtonEnabled}"
+                                     Value="False"
+                                     TargetType="Button">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
                 <!-- LINE -->
                 <BoxView Grid.Row="1"
-                     Grid.ColumnSpan="2"
-                     Color="{x:DynamicResource cbg_i3}"
-                     HeightRequest="1"/>
+                         Grid.ColumnSpan="2"
+                         Color="{x:DynamicResource cbg_i3}"
+                         HeightRequest="1"/>
 
                 <StackLayout Grid.Row="2"
-                         Orientation="Vertical"
-                         HorizontalOptions="CenterAndExpand">
+                             Grid.ColumnSpan="2"
+                             Spacing="10"
+                             Orientation="Vertical"
+                             Margin="20,20">
 
-                    <Entry Text="{Binding Email}"
-                           Placeholder="{xct:Translate Email}"/>
+                    <Grid ColumnDefinitions="*, *"
+                          RowSpacing="5">
 
-                    <Entry Text="{Binding Username}"
-                           Placeholder="{xct:Translate Username}"/>
+                        <Entry Text="{Binding Email}"
+                               Placeholder="{xct:Translate Email}"/>
 
-                    <Entry Text="{Binding FirstName}"
-                           Placeholder="{xct:Translate FirstName}"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding EmailWarningText}"
+                               FontSize="Small"
+                               TextColor="Red"
+                               VerticalOptions="Center"
+                               MaxLines="2"/>
 
-                    <Entry Text="{Binding LastName}"
-                           Placeholder="{xct:Translate LastName}"/>
+                    </Grid>
 
-                    <Entry Text="{Binding Password}"
-                           Placeholder="{xct:Translate Password}"/>
+                    <Grid ColumnDefinitions="*, *"
+                          RowSpacing="5">
 
-                    <Entry Text="{Binding ConfirmPassword}"
-                           Placeholder="{xct:Translate ConfirmPassword}"/>
+                        <Entry Text="{Binding Username}"
+                               Placeholder="{xct:Translate Username}"/>
 
-                    <Button Text="{xct:Translate SignUp}"
-                            Command="{Binding SignUpButtonTappedCommand}"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding UsernameWarningText}"
+                               FontSize="Small"
+                               TextColor="Red"
+                               VerticalOptions="Center"
+                               MaxLines="2"/>
+
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *">
+                        <Entry Text="{Binding FirstName}"
+                               Placeholder="{xct:Translate FirstName}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *">
+                        <Entry Text="{Binding LastName}"
+                               Placeholder="{xct:Translate LastName}"/>
+
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *">
+                        <Picker ItemsSource="{Binding Roles}"
+                                SelectedItem="{Binding SelectedRole}"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *">
+
+                        <Entry Text="{Binding Password}"
+                               Placeholder="{xct:Translate Password}"
+                               IsPassword="True"/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding PasswordWarningText}"
+                               FontSize="Small"
+                               TextColor="Red"
+                               VerticalOptions="Center"
+                               MaxLines="2"/>
+
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*, *">
+
+                        <Entry Text="{Binding ConfirmPassword}"
+                               IsPassword="True"
+                               Placeholder="{xct:Translate ConfirmPassword}"/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding ConfirmPasswordWarningText}"
+                               FontSize="Small"
+                               TextColor="Red"
+                               VerticalOptions="Center"
+                               MaxLines="2"/>
+
+                    </Grid>
+
+                    <Editor Text="{Binding Description}"
+                            Placeholder="{xct:Translate Description}"
+                            HeightRequest="100"
+                            Margin="0,20,0,0"/>
 
                 </StackLayout>
 

@@ -1,4 +1,6 @@
-﻿using Diploma.Models;
+﻿using Diploma.Events;
+using Diploma.Models;
+using Prism.Events;
 using Xamarin.Essentials;
 
 namespace Diploma.Services.Settings
@@ -21,6 +23,13 @@ namespace Diploma.Services.Settings
 
         #endregion
 
+        #region -- Protected properties --
+
+        private IEventAggregator _eventAggregator;
+        protected IEventAggregator EventAggregator => _eventAggregator ??= App.Resolve<IEventAggregator>();
+
+        #endregion
+
         #region -- Public helpers --
 
         public void AuthorizeUser(string jwtToken, UserModel userModel)
@@ -29,6 +38,7 @@ namespace Diploma.Services.Settings
             {
                 JWTToken = jwtToken;
                 UserId = userModel.Id;
+                EventAggregator?.GetEvent<AuthChangedEvent>()?.Publish(true);
             }
         }
 
@@ -36,6 +46,7 @@ namespace Diploma.Services.Settings
         {
             JWTToken = default;
             UserId = 0;
+            EventAggregator?.GetEvent<AuthChangedEvent>()?.Publish(false);
         }
 
         #endregion

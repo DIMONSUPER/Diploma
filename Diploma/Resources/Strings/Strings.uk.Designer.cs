@@ -178,5 +178,23 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("ReminderTime", resourceCulture);
             }
         }
+        
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        internal static string Russian {
+            get {
+                return ResourceManager.GetString("Russian", resourceCulture);
+            }
+        }
+        
+        internal static string Ukrainian {
+            get {
+                return ResourceManager.GetString("Ukrainian", resourceCulture);
+            }
+        }
     }
 }

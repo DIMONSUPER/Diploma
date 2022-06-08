@@ -101,14 +101,14 @@
                            Style="{x:DynamicResource textLabelStyle}"/>
 
                     <Picker HorizontalOptions="End"
-                            HorizontalTextAlignment="End"
+                            HorizontalTextAlignment="Center"
                             TextColor="{x:DynamicResource cbg_i4}"
                             FontSize="{x:DynamicResource tsize_i3}"
                             ItemsSource="{Binding LanguageItems}"
                             SelectedItem="{Binding SelectedLanguage}"
                             FontAttributes="Bold"
                             BackgroundColor="Transparent"
-                            WidthRequest="80"/>
+                            WidthRequest="100"/>
 
                 </StackLayout>
 

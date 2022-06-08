@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
-using Diploma.Enums;
 using Diploma.Helpers;
+using Diploma.Models;
 using Diploma.Resources.Strings;
 using Diploma.Services.Authorization;
 using Diploma.Services.User;
 using Prism.Events;
 using Prism.Navigation;
-using Xamarin.CommunityToolkit.UI.Views;
 
 namespace Diploma.ViewModels.Modal
 {
@@ -35,10 +32,11 @@ namespace Diploma.ViewModels.Modal
             _userDialogs = userDialogs;
             _userService = userService;
 
-            CurrentState = LayoutState.Success;
+            //CurrentState = LayoutState.Success;
         }
 
-        private string TrimmedEmail => Email.Trim().ToLower();
+        private string TrimmedEmail => Email?.Trim().ToLower();
+        private string TrimmedUsername => Username?.Trim().ToLower();
 
         #region -- Public properties --
 
@@ -84,6 +82,13 @@ namespace Diploma.ViewModels.Modal
             set => SetProperty(ref _confirmPassword, value);
         }
 
+        private string _selectedRole;
+        public string SelectedRole
+        {
+            get => _selectedRole;
+            set => SetProperty(ref _selectedRole, value);
+        }
+
         private ObservableCollection<string> _roles;
         public ObservableCollection<string> Roles
         {
@@ -98,6 +103,41 @@ namespace Diploma.ViewModels.Modal
             set => SetProperty(ref _emailWarningText, value);
         }
 
+        private string _usernameWarningText;
+        public string UsernameWarningText
+        {
+            get => _usernameWarningText;
+            set => SetProperty(ref _usernameWarningText, value);
+        }
+
+        private string _passwordWarningText;
+        public string PasswordWarningText
+        {
+            get => _passwordWarningText;
+            set => SetProperty(ref _passwordWarningText, value);
+        }
+
+        private string _confirmPasswordWarningText;
+        public string ConfirmPasswordWarningText
+        {
+            get => _confirmPasswordWarningText;
+            set => SetProperty(ref _confirmPasswordWarningText, value);
+        }
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set => SetProperty(ref _description, value);
+        }
+
+        private bool _isSignUpButtonEnabled;
+        public bool IsSignUpButtonEnabled
+        {
+            get => _isSignUpButtonEnabled;
+            set => SetProperty(ref _isSignUpButtonEnabled, value);
+        }
+
         private ICommand _backButtonTappedCommand;
         public ICommand BackButtonTappedCommand => _backButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnBackButtonTappedCommandAsync);
 
@@ -107,6 +147,15 @@ namespace Diploma.ViewModels.Modal
         #endregion
 
         #region -- Overrides --
+
+        public override void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+
+            InitRoles();
+
+            SelectedRole = Roles.FirstOrDefault();
+        }
 
         protected override async void OnPropertyChanged(PropertyChangedEventArgs args)
         {
@@ -130,11 +179,86 @@ namespace Diploma.ViewModels.Modal
                     EmailWarningText = Strings.EmailDoesntExist;
                 }
             }
+            else if (args.PropertyName is nameof(Username))
+            {
+                if (!string.IsNullOrWhiteSpace(TrimmedUsername) && TrimmedUsername.Length >= 4 && IsInternetConnected)
+                {
+                    if (await IsUsernameDoesntExist(TrimmedUsername))
+                    {
+                        UsernameWarningText = default;
+                    }
+                    else
+                    {
+                        UsernameWarningText = Strings.UserWithSuchUsername;
+                    }
+                }
+                else
+                {
+                    UsernameWarningText = Strings.UserMustContain;
+                }
+            }
+            else if (args.PropertyName is nameof(Password) or nameof(ConfirmPassword))
+            {
+                if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
+                {
+                    PasswordWarningText = Strings.PasswordMustContain;
+                }
+                else
+                {
+                    PasswordWarningText = default;
+                }
+
+                if (string.IsNullOrWhiteSpace(ConfirmPassword) || ConfirmPassword != Password)
+                {
+                    ConfirmPasswordWarningText = Strings.PasswordsDontMatch;
+                }
+                else
+                {
+                    ConfirmPasswordWarningText = default;
+                }
+            }
+
+            if (args.PropertyName is nameof(Password) or nameof(Username) or nameof(ConfirmPassword) or nameof(Email) or nameof(FirstName) or nameof(LastName))
+            {
+                IsSignUpButtonEnabled = !string.IsNullOrWhiteSpace(Password)
+                    && string.IsNullOrWhiteSpace(PasswordWarningText)
+                    && string.IsNullOrWhiteSpace(ConfirmPasswordWarningText)
+                    && !string.IsNullOrWhiteSpace(FirstName)
+                    && !string.IsNullOrWhiteSpace(LastName)
+                    && !string.IsNullOrWhiteSpace(TrimmedUsername)
+                    && !string.IsNullOrWhiteSpace(TrimmedEmail)
+                    && string.IsNullOrWhiteSpace(EmailWarningText)
+                    && string.IsNullOrWhiteSpace(UsernameWarningText);
+            }
         }
 
         #endregion
 
         #region -- Private helpers --
+
+        private void InitRoles()
+        {
+            Roles = new()
+            {
+                Strings.Student,
+                Strings.Teacher,
+            };
+
+        }
+
+        private async Task<bool> IsUsernameDoesntExist(string username)
+        {
+            bool result = false;
+
+            var usersResponse = await _userService.GetAllUsersAsync();
+
+            if (usersResponse.IsSuccess)
+            {
+                result = !usersResponse.Result.Any(x => x.Username.ToLower() == username);
+            }
+
+            return result;
+        }
 
         private async Task<bool> IsEmailDoesntExist(string email)
         {
@@ -144,7 +268,7 @@ namespace Diploma.ViewModels.Modal
 
             if (usersResponse.IsSuccess)
             {
-                result = !usersResponse.Result.Any(x => x.Email == email);
+                result = !usersResponse.Result.Any(x => x.Email.ToLower() == email);
             }
 
             return result;
@@ -154,7 +278,22 @@ namespace Diploma.ViewModels.Modal
         {
             if (IsInternetConnected)
             {
+                var userModel = new UserModel
+                {
+                    Description = Description,
+                    Email = TrimmedEmail,
+                    Name = FirstName,
+                    Surname = LastName,
+                    Username = TrimmedUsername,
+                    RoleId = SelectedRole == Strings.Student ? 0 : 1,
+                };
 
+                var registrationResponse = await _authorizationService.RegisterAsync(userModel, Password);
+
+                if (registrationResponse.IsSuccess)
+                {
+                    await OnBackButtonTappedCommandAsync();
+                }
             }
             else
             {
@@ -169,14 +308,19 @@ namespace Diploma.ViewModels.Modal
 
         private bool IsEmailCorrect(string email)
         {
-            var result = false;
-
-            if (!string.IsNullOrWhiteSpace(email))
+            if (email.EndsWith("."))
             {
-
+                return false; // suggested by @TK-421
             }
-
-            return result;
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         #endregion
