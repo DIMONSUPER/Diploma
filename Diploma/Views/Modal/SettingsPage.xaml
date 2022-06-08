@@ -101,12 +101,14 @@
                            Style="{x:DynamicResource textLabelStyle}"/>
 
                     <Picker HorizontalOptions="End"
+                            HorizontalTextAlignment="End"
                             TextColor="{x:DynamicResource cbg_i4}"
                             FontSize="{x:DynamicResource tsize_i3}"
                             ItemsSource="{Binding LanguageItems}"
                             SelectedItem="{Binding SelectedLanguage}"
                             FontAttributes="Bold"
-                            BackgroundColor="Transparent"/>
+                            BackgroundColor="Transparent"
+                            WidthRequest="80"/>
 
                 </StackLayout>
 
@@ -114,6 +116,60 @@
                 <BoxView Color="{x:DynamicResource cbg_i3}"
                          HeightRequest="1"
                          Margin="0,15,0,0"/>
+
+                <!-- NOTIFY ABOUT STUDIES -->
+                <Grid ColumnDefinitions="*, 80"
+                      RowDefinitions="Auto, Auto"
+                      RowSpacing="10"
+                      Padding="20,0"
+                      Margin="0,15,0,0">
+
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{xct:Translate NotifyAboutClasses}"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           Style="{x:DynamicResource textLabelStyle}"/>
+
+                    <Switch Grid.Column="1"
+                            Grid.Row="0"
+                            HorizontalOptions="End"
+                            ThumbColor="White"
+                            IsToggled="{Binding ShouldNotifyMe}"
+                            OnColor="{x:DynamicResource cbg_i5}"/>
+
+                    <xct:Expander Grid.Row="1"
+                                  Grid.ColumnSpan="2"
+                                  IsExpanded="{Binding ShouldNotifyMe}">
+
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="20">
+
+                            <Label Text="{xct:Translate ReminderTime}"
+                                   VerticalOptions="CenterAndExpand"
+                                   Style="{x:DynamicResource textLabelStyle}"/>
+
+                            <TimePicker HorizontalOptions="EndAndExpand"
+                                        BackgroundColor="Transparent"
+                                        Time="{Binding NotificationTime}"
+                                        TextColor="{x:DynamicResource cbg_i4}"/>
+
+                        </StackLayout>
+
+                    </xct:Expander>
+
+                </Grid>
+
+                <!-- LINE -->
+                <BoxView Color="{x:DynamicResource cbg_i3}"
+                         HeightRequest="1">
+                    <BoxView.Margin>
+                        <OnPlatform x:TypeArguments="Thickness"
+                                    Android="0,15,0,0"
+                                    iOS="0,20,0,0"/>
+                    </BoxView.Margin>
+                </BoxView>
 
             </StackLayout>
 

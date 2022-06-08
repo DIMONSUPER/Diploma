@@ -191,9 +191,27 @@ namespace Diploma.Resources.Strings {
             }
         }
         
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        internal static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
             }
         }
         
@@ -212,6 +230,18 @@ namespace Diploma.Resources.Strings {
         internal static string LogOutMessage {
             get {
                 return ResourceManager.GetString("LogOutMessage", resourceCulture);
+            }
+        }
+        
+        internal static string UserWithSuchEmail {
+            get {
+                return ResourceManager.GetString("UserWithSuchEmail", resourceCulture);
+            }
+        }
+        
+        internal static string EmailDoesntExist {
+            get {
+                return ResourceManager.GetString("EmailDoesntExist", resourceCulture);
             }
         }
     }

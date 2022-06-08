@@ -45,7 +45,7 @@
 		<comment>Search</comment>
 	</data>
 	<data name="Profile" xml:space="preserve">
-		<value>Профиль</value>
+		<value>Профіль</value>
 		<comment>Profile</comment>
 	</data>
 	<data name="Notifications" xml:space="preserve">

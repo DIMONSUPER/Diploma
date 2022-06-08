@@ -125,7 +125,6 @@
     <None Remove="Converters\" />
     <None Remove="Services\Style\" />
     <None Remove="Resources\Fonts\Font_Awesome_5_Brands_Regular_400.otf" />
-    <None Remove="Controls\" />
     <None Remove="Xamarin.FFImageLoading.Forms" />
     <None Remove="Xamarin.Essentials" />
     <None Remove="Services\Mapper\" />
@@ -159,7 +158,6 @@
     <Folder Include="Resources\Styles\" />
     <Folder Include="Converters\" />
     <Folder Include="Services\Style\" />
-    <Folder Include="Controls\" />
     <Folder Include="Services\Mapper\" />
     <Folder Include="Services\User\" />
     <Folder Include="Services\Repository\" />

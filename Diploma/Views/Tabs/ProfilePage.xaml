@@ -15,12 +15,12 @@
             <Style x:Key="iconStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
                 <Setter Property="FontSize" Value="{x:DynamicResource itsize_i7}"/>
-                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
             </Style>
 
             <Style x:Key="usernameLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{x:DynamicResource tsize_i5}"/>
-                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="LineBreakMode" Value="TailTruncation"/>
                 <Setter Property="VerticalTextAlignment" Value="Start"/>
@@ -29,10 +29,16 @@
 
             <Style x:Key="textLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
-                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
                 <Setter Property="VerticalTextAlignment" Value="Start"/>
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
             </Style>
 
         </ResourceDictionary>
@@ -80,19 +86,20 @@
                                      HorizontalOptions="CenterAndExpand">
 
                             <Entry Placeholder="{xct:Translate UsernameOrEmail}"
-                                   Text="{Binding Identifier}"/>
+                                   Text="{Binding Identifier}"
+                                   Style="{x:DynamicResource entryStyle}"/>
 
                             <Entry Placeholder="{xct:Translate Password}"
                                    IsPassword="True"
                                    Text="{Binding Password}"
-                                   x:Name="passwordEntry"/>
+                                   Style="{x:DynamicResource entryStyle}"/>
 
                             <Button Text="{xct:Translate SignIn}"
                                     Command="{Binding SignInTappedCommand}"
                                     IsEnabled="{Binding IsSignInButtonEnabled}"/>
 
                             <Button Text="{xct:Translate SignUp}"
-                                    Command="{Binding SignUpTappedCommand}"/>
+                                    Command="{Binding SignUpButtonTappedCommand}"/>
 
                         </StackLayout>
 
@@ -184,69 +191,6 @@
                             </Grid>
 
                         </Grid>
-
-                        <StackLayout Margin="0,15,0,0"
-                                     Orientation="Vertical">
-
-                            <!-- NOTIFICATIONS TITLE -->
-                            <Label Text="{xct:Translate Notifications}"
-                                   Margin="20,0,0,15"
-                                   Style="{x:DynamicResource textLabelStyle}"/>
-
-                            <!-- NOTIFY ABOUT STUDIES -->
-                            <Grid ColumnDefinitions="*, 80"
-                                  RowDefinitions="Auto, Auto"
-                                  RowSpacing="10"
-                                  Padding="20,0">
-
-                                <Label Grid.Column="0"
-                                       Grid.Row="0"
-                                       Text="{xct:Translate NotifyAboutClasses}"
-                                       HorizontalOptions="StartAndExpand"
-                                       VerticalTextAlignment="Center"
-                                       VerticalOptions="CenterAndExpand"
-                                       Style="{x:DynamicResource textLabelStyle}"/>
-
-                                <Switch Grid.Column="1"
-                                        Grid.Row="0"
-                                        HorizontalOptions="End"
-                                        ThumbColor="White"
-                                        IsToggled="{Binding ShouldNotifyMe}"
-                                        OnColor="{x:DynamicResource cbg_i5}"/>
-
-                                <xct:Expander Grid.Row="1"
-                                              Grid.ColumnSpan="2"
-                                              IsExpanded="{Binding ShouldNotifyMe}">
-
-                                    <StackLayout Orientation="Horizontal"
-                                                 Spacing="20">
-
-                                        <Label Text="{xct:Translate ReminderTime}"
-                                               VerticalOptions="CenterAndExpand"
-                                               Style="{x:DynamicResource textLabelStyle}"/>
-
-                                        <TimePicker HorizontalOptions="EndAndExpand"
-                                                    BackgroundColor="Transparent"
-                                                    Time="{Binding NotificationTime}"
-                                                    TextColor="{x:DynamicResource cbg_i4}"/>
-
-                                    </StackLayout>
-
-                                </xct:Expander>
-
-                            </Grid>
-
-                            <!-- LINE -->
-                            <BoxView Color="{x:DynamicResource cbg_i3}"
-                                     HeightRequest="1">
-                                <BoxView.Margin>
-                                    <OnPlatform x:TypeArguments="Thickness"
-                                                Android="0,15,0,0"
-                                                iOS="0,20,0,0"/>
-                                </BoxView.Margin>
-                            </BoxView>
-
-                        </StackLayout>
 
                     </StackLayout>
 

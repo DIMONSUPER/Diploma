@@ -109,9 +109,21 @@
 		<value>Username or email</value>
 		<comment>Username or email</comment>
 	</data>
+	<data name="Email" xml:space="preserve">
+		<value>Email</value>
+		<comment>Email</comment>
+	</data>
+	<data name="Username" xml:space="preserve">
+		<value>Username</value>
+		<comment>Username</comment>
+	</data>
 	<data name="Password" xml:space="preserve">
 		<value>Password</value>
 		<comment>Password</comment>
+	</data>
+	<data name="ConfirmPassword" xml:space="preserve">
+		<value>Confirm password</value>
+		<comment>Confirm password</comment>
 	</data>
 	<data name="SignIn" xml:space="preserve">
 		<value>Sign in</value>
@@ -124,5 +136,13 @@
 	<data name="LogOutMessage" xml:space="preserve">
 		<value>Are you sure you want to log out?</value>
 		<comment>Are you sure you want to log out?</comment>
+	</data>
+	<data name="UserWithSuchEmail" xml:space="preserve">
+		<value>User with such email already exists</value>
+		<comment>User with such email already exists</comment>
+	</data>
+		<data name="EmailDoesntExist" xml:space="preserve">
+		<value>Email doesn't exist</value>
+		<comment>Email doesn't exist</comment>
 	</data>
 </root>

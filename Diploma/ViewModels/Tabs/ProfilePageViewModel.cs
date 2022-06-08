@@ -10,7 +10,6 @@ using Diploma.Services.Authorization;
 using Diploma.Services.Settings;
 using Diploma.Services.User;
 using Diploma.Views.Modal;
-using Plugin.LocalNotification;
 using Prism.Events;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -20,7 +19,6 @@ namespace Diploma.ViewModels.Tabs
     public class ProfilePageViewModel : BaseTabViewModel
     {
         private readonly ISettingsManager _settingsManager;
-        private readonly INotificationService _notificationService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
         private readonly IUserService _userService;
@@ -29,14 +27,12 @@ namespace Diploma.ViewModels.Tabs
             INavigationService navigationService,
             IEventAggregator eventAggregator,
             ISettingsManager settingsManager,
-            INotificationService notificationService,
             IAuthorizationService authorizationService,
             IUserDialogs userDialogs,
             IUserService userService)
             : base(navigationService, eventAggregator)
         {
             _settingsManager = settingsManager;
-            _notificationService = notificationService;
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
             _userService = userService;
@@ -67,20 +63,6 @@ namespace Diploma.ViewModels.Tabs
             set => SetProperty(ref _description, value);
         }
 
-        private bool _shouldNotifyMe;
-        public bool ShouldNotifyMe
-        {
-            get => _shouldNotifyMe;
-            set => SetProperty(ref _shouldNotifyMe, value);
-        }
-
-        private TimeSpan _notificationTime;
-        public TimeSpan NotificationTime
-        {
-            get => _notificationTime;
-            set => SetProperty(ref _notificationTime, value);
-        }
-
         private string _password;
         public string Password
         {
@@ -107,6 +89,9 @@ namespace Diploma.ViewModels.Tabs
 
         private ICommand _signInTappedCommand;
         public ICommand SignInTappedCommand => _signInTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignInTappedCommandAsync);
+
+        private ICommand _signUpButtonTappedCommand;
+        public ICommand SignUpButtonTappedCommand => _signUpButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignUpButtonTappedCommandAsync);
 
         private ICommand _signOutButtonTappedCommand;
         public ICommand SignOutButtonTappedCommand => _signOutButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignOutButtonTappedCommandAsync);
@@ -151,6 +136,11 @@ namespace Diploma.ViewModels.Tabs
         #endregion
 
         #region -- Private helpers --
+
+        private Task OnSignUpButtonTappedCommandAsync()
+        {
+            return NavigationService.NavigateAsync(nameof(SignUpPage), new NavigationParameters(), true, true);
+        }
 
         private async Task OnSignOutButtonTappedCommandAsync()
         {
@@ -200,37 +190,11 @@ namespace Diploma.ViewModels.Tabs
             return NavigationService.NavigateAsync(nameof(SettingsPage), new NavigationParameters(), true, true);
         }
 
-        private void SetNotification()
-        {
-            _notificationService.CancelAll();
-
-            if (ShouldNotifyMe)
-            {
-                _notificationService.Show(new NotificationRequest()
-                {
-                    BadgeNumber = 1,
-                    Description = Strings.ContinueYourStudying,
-                    Title = Strings.DailyRemainder,
-                    NotificationId = 16,
-                    Schedule = new()
-                    {
-                        NotifyTime = DateTime.Today.Add(NotificationTime),
-                        RepeatType = NotificationRepeat.Daily,
-                    }
-                });
-            }
-
-            _settingsManager.UserSettings.ShouldNotifyMe = ShouldNotifyMe;
-            _settingsManager.UserSettings.NotificationTime = NotificationTime;
-        }
-
         private void SetUserInformation(UserModel user)
         {
             FirstName = user.Name;
             LastName = user.Surname;
             Description = user.Description;
-            //_shouldNotifyMe = _settingsManager.UserSettings.ShouldNotifyMe;
-            //_notificationTime = _settingsManager.UserSettings.NotificationTime;
 
             CurrentState = LayoutState.Success;
         }
