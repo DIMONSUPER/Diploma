@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Diploma.Services.Settings;
@@ -172,6 +173,11 @@ namespace Diploma.Services.Rest
                 {
                     request.Headers.Add(header.Key, header.Value);
                 }
+            }
+
+            if (_settingsManager.IsAuthorized)
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _settingsManager.AuthorizationSettings.JWTToken);
             }
 
             var res = await _client.SendAsync(request).ConfigureAwait(false);

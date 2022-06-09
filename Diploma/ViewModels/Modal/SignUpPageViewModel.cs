@@ -31,8 +31,6 @@ namespace Diploma.ViewModels.Modal
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
             _userService = userService;
-
-            //CurrentState = LayoutState.Success;
         }
 
         private string TrimmedEmail => Email?.Trim().ToLower();
@@ -288,7 +286,11 @@ namespace Diploma.ViewModels.Modal
                     RoleId = SelectedRole == Strings.Student ? 0 : 1,
                 };
 
+                _userDialogs.ShowLoading(Strings.Loading);
+
                 var registrationResponse = await _authorizationService.RegisterAsync(userModel, Password);
+
+                _userDialogs.HideLoading();
 
                 if (registrationResponse.IsSuccess)
                 {
@@ -310,7 +312,7 @@ namespace Diploma.ViewModels.Modal
         {
             if (email.EndsWith("."))
             {
-                return false; // suggested by @TK-421
+                return false;
             }
             try
             {

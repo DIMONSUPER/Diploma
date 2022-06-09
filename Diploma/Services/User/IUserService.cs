@@ -9,8 +9,6 @@ namespace Diploma.Services.User
     {
         Task<AOResult<IEnumerable<UserModel>>> GetAllUsersAsync();
 
-        Task<AOResult<UserModel>> RegisterNewUserAsync(UserModel userModel);
-
         Task<AOResult<UserModel>> UpdateUserAsync(UserModel userModel);
 
         Task<AOResult<UserModel>> GetUserByIdAsync(int id);

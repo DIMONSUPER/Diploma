@@ -22,6 +22,7 @@ namespace Diploma.ViewModels.Tabs
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
         private readonly IUserService _userService;
+        private UserModel _currentUser;
 
         public ProfilePageViewModel(
             INavigationService navigationService,
@@ -98,9 +99,25 @@ namespace Diploma.ViewModels.Tabs
         private ICommand _signOutButtonTappedCommand;
         public ICommand SignOutButtonTappedCommand => _signOutButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnSignOutButtonTappedCommandAsync);
 
+        private ICommand _editButtonTappedCommand;
+        public ICommand EditButtonTappedCommand => _editButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnEditButtonTappedCommandAsync);
+
         #endregion
 
         #region -- Overrides --
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.TryGetValue(nameof(UserModel), out UserModel userModel))
+            {
+                FirstName = userModel.Name;
+                LastName = userModel.Surname;
+                Description = userModel.Description;
+                _currentUser = userModel;
+            }
+        }
 
         public override async void Initialize(INavigationParameters parameters)
         {
@@ -115,6 +132,7 @@ namespace Diploma.ViewModels.Tabs
                 if (currentUserResponse.IsSuccess)
                 {
                     SetUserInformation(currentUserResponse.Result);
+                    _currentUser = currentUserResponse.Result;
                 }
             }
             else
@@ -146,6 +164,15 @@ namespace Diploma.ViewModels.Tabs
 
         #region -- Private helpers --
 
+        private async Task OnEditButtonTappedCommandAsync()
+        {
+            var parameters = new NavigationParameters();
+
+            parameters.Add(nameof(UserModel), _currentUser);
+
+            await NavigationService.NavigateAsync(nameof(EditProfilePage), parameters, true, true);
+        }
+
         private async void OnAuthChangedEvent(bool isLoggedIn)
         {
             if (isLoggedIn)
@@ -176,9 +203,9 @@ namespace Diploma.ViewModels.Tabs
 
             if (isConfirmed)
             {
-                _settingsManager.AuthorizationSettings.ResetSettings();
+                CurrentState = LayoutState.Loading;
 
-                CurrentState = LayoutState.Empty;
+                _settingsManager.AuthorizationSettings.ResetSettings();
             }
         }
 

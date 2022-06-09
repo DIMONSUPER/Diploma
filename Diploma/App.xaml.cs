@@ -56,6 +56,7 @@ namespace Diploma
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
 
             containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());

@@ -316,5 +316,23 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("Description", resourceCulture);
             }
         }
+        
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        internal static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
+            }
+        }
+        
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
     }
 }

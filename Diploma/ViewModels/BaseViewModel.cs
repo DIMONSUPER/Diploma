@@ -8,7 +8,7 @@ using Xamarin.Essentials;
 
 namespace Diploma.ViewModels
 {
-    public class BaseViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware, IInitialize, IInitializeAsync, IDestructible
+    public class BaseViewModel : BindableBase, IPageLifecycleAware, IApplicationLifecycleAware, IInitialize, IInitializeAsync, IDestructible, INavigatedAware
     {
         public BaseViewModel(
             INavigationService navigationService,
@@ -75,6 +75,14 @@ namespace Diploma.ViewModels
         {
             Connectivity.ConnectivityChanged -= OnConnectionChanged;
         }
+
+        #endregion
+
+        #region -- INavigatioAware implementation --
+
+        public virtual void OnNavigatedFrom(INavigationParameters parameters) { }
+
+        public virtual void OnNavigatedTo(INavigationParameters parameters) { }
 
         #endregion
 

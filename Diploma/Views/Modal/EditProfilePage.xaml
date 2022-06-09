@@ -1,9 +1,122 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Diploma.Views.Modal.EditProfilePage">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
-</ContentPage>
+<modal:BaseModalContentPage xmlns:modal="clr-namespace:Diploma.Views.Modal"
+                            xmlns="http://xamarin.com/schemas/2014/forms"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            xmlns:helpers="clr-namespace:Diploma.Helpers"
+                            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                            xmlns:vms="clr-namespace:Diploma.ViewModels.Modal"
+                            x:Class="Diploma.Views.Modal.EditProfilePage"
+                            BackgroundColor="{x:DynamicResource cbg_i1}"
+                            x:DataType="{x:Type vms:EditProfilePageViewModel}">
+
+    <modal:BaseModalContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="iconStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
+                <Setter Property="FontSize" Value="{x:DynamicResource itsize_i7}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+            </Style>
+
+            <Style x:Key="textLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i5}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+                <Setter Property="MaxLength" Value="32"/>
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+                <Setter Property="MaxLength" Value="64"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </modal:BaseModalContentPage.Resources>
+
+    <modal:BaseModalContentPage.Content>
+
+        <Grid RowDefinitions="60, 1, *"
+              ColumnDefinitions="40, *"
+              Margin="0,10,0,0"
+              RowSpacing="0">
+
+            <Label Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="{xct:Translate EditProfile}"
+                   TextColor="{x:DynamicResource cbg_i4}"
+                   FontSize="{x:DynamicResource tsize_i5}"
+                   FontAttributes="Bold"/>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{x:Static helpers:FontIcons.ArrowLeft}"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Style="{x:DynamicResource iconStyle}"
+                   xct:TouchEffect.Command="{Binding BackButtonTappedCommand}"/>
+
+            <Button Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="End"
+                    Text="{xct:Translate Save}"
+                    TextColor="{x:DynamicResource cbg_i4}"
+                    FontSize="{x:DynamicResource tsize_i5}"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    Margin="0,0,20,0"
+                    VerticalOptions="Center"
+                    IsEnabled="{Binding IsSaveButtonEnabled}"
+                    Command="{Binding SaveButtonTappedCommand}">
+                <Button.Triggers>
+                    <DataTrigger Binding="{Binding IsSaveButtonEnabled}"
+                                 Value="False"
+                                 TargetType="Button">
+                        <Setter Property="Opacity" Value="0.5"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <!-- LINE -->
+            <BoxView Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Color="{x:DynamicResource cbg_i3}"
+                     HeightRequest="1"/>
+
+            <StackLayout Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         Spacing="10"
+                         Orientation="Vertical"
+                         Margin="20,20">
+
+                <Entry Text="{Binding FirstName}"
+                       Placeholder="{xct:Translate FirstName}"/>
+
+                <Entry Text="{Binding LastName}"
+                       Placeholder="{xct:Translate LastName}"/>
+
+                <Editor Text="{Binding Description}"
+                        Placeholder="{xct:Translate Description}"
+                        HeightRequest="100"
+                        Margin="0,20,0,0"/>
+
+            </StackLayout>
+
+        </Grid>
+
+    </modal:BaseModalContentPage.Content>
+
+</modal:BaseModalContentPage>

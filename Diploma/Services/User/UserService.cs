@@ -3,19 +3,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Diploma.Helpers;
 using Diploma.Models;
+using Diploma.Services.Repository;
 using Diploma.Services.Rest;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Diploma.Services.User
 {
     public class UserService : IUserService
     {
         private readonly IRestService _restService;
+        private readonly IRepositoryService _repositoryService;
 
-        public UserService(IRestService restService)
+        public UserService(
+            IRestService restService,
+            IRepositoryService repositoryService)
         {
             _restService = restService;
+            _repositoryService = repositoryService;
         }
 
         #region -- IUserService implementation --
@@ -56,14 +59,25 @@ namespace Diploma.Services.User
             });
         }
 
-        public Task<AOResult<UserModel>> RegisterNewUserAsync(UserModel userModel)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<AOResult<UserModel>> UpdateUserAsync(UserModel userModel)
         {
-            throw new System.NotImplementedException();
+            return AOResult.ExecuteTaskAsync(async onFailure =>
+            {
+                var url = $"{Constants.BASE_URL}/users/{userModel.Id}";
+
+                var body = new { name = userModel.Name, surname = userModel.Surname };
+
+                var response = await _restService.PutAsync<UserModel>(url, body);
+
+                if (response is null)
+                {
+                    onFailure("Failed to update");
+                }
+
+                await _repositoryService.SaveOrUpdateAsync(response);
+
+                return response;
+            });
         }
 
         #endregion

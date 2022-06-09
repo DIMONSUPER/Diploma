@@ -126,7 +126,8 @@
                                          Spacing="30">
 
                                 <Label Text="{x:Static helpers:FontIcons.Pen}"
-                                       Style="{x:DynamicResource iconStyle}"/>
+                                       Style="{x:DynamicResource iconStyle}"
+                                       xct:TouchEffect.Command="{Binding EditButtonTappedCommand}"/>
 
                                 <Label Text="{x:Static helpers:FontIcons.Cog}"
                                        Style="{x:DynamicResource iconStyle}"
