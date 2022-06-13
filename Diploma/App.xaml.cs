@@ -9,6 +9,7 @@ using Diploma.Services.Rest;
 using Diploma.Services.Settings;
 using Diploma.Services.Style;
 using Diploma.Services.User;
+using Diploma.ViewModels;
 using Diploma.ViewModels.Modal;
 using Diploma.ViewModels.Tabs;
 using Diploma.Views;
@@ -57,6 +58,10 @@ namespace Diploma
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<NewCoursePage, NewCoursePageViewModel>();
+            containerRegistry.RegisterForNavigation<CoursePage, CoursePageViewModel>();
+            containerRegistry.RegisterForNavigation<NewLessonPage, NewLessonPageViewModel>();
+            containerRegistry.RegisterForNavigation<LessonPage, LessonPageViewModel>();
 
             containerRegistry.RegisterInstance<IMapperService>(Container.Resolve<MapperService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());

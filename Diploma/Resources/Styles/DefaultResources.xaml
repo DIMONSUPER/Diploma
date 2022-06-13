@@ -46,4 +46,11 @@
         <Setter Property="IsRunning" Value="True"/>
     </Style>
 
+    <Style TargetType="Editor">
+        <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+        <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+        <Setter Property="PlaceholderColor" Value="{x:DynamicResource tcolor_i4}"/>
+        <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+    </Style>
+
 </ResourceDictionary>

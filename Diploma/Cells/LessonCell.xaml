@@ -1,9 +1,62 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Diploma.Cells.LessonCell">
-    <ContentView.Content>
-        
-    </ContentView.Content>
-</ContentView>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:models="clr-namespace:Diploma.Models"
+      xmlns:helpers="clr-namespace:Diploma.Helpers"
+      xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+      x:Class="Diploma.Cells.LessonCell"
+      RowDefinitions="70, 1"
+      RowSpacing="0"
+      ColumnDefinitions="Auto, *"
+      x:DataType="{x:Type models:LessonBindableModel}"
+      xct:TouchEffect.Command="{Binding TappedCommand}"
+      xct:TouchEffect.CommandParameter="{Binding .}">
+
+    <Grid.Resources>
+
+        <Style x:Key="textLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{x:DynamicResource tsize_i6}"/>
+            <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="iconStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
+            <Setter Property="FontSize" Value="{x:DynamicResource itsize_i7}"/>
+            <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+        </Style>
+
+    </Grid.Resources>
+
+    <Label Style="{x:DynamicResource textLabelStyle}"
+           Margin="20,0,0,0">
+
+        <Label.Text>
+
+            <MultiBinding StringFormat="{}Lesson {0}. {1}">
+
+                <Binding Path="Part"/>
+
+                <Binding Path="Title" />
+
+            </MultiBinding>
+
+        </Label.Text>
+
+    </Label>
+
+    <Label Grid.Column="1"
+           Text="{x:Static helpers:FontIcons.ArrowRight}"
+           HorizontalOptions="EndAndExpand"
+           VerticalTextAlignment="Center"
+           Style="{x:DynamicResource iconStyle}"
+           xct:TouchEffect.Command="{Binding TappedCommand}"
+           Margin="0,0,20,0"/>
+
+    <BoxView Color="{x:DynamicResource cbg_i3}"
+             Grid.Row="1"
+             Grid.ColumnSpan="2"/>
+
+</Grid>

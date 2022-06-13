@@ -39,8 +39,25 @@
                 <xct:StateView StateKey="Empty"
                                VerticalOptions="FillAndExpand">
 
-                    <Label Text="{xct:Translate NoCoursesYet}"
-                           Style="{x:DynamicResource warningLabelStyle}"/>
+                    <StackLayout VerticalOptions="Center">
+
+                        <Label Text="{xct:Translate NoCoursesYet}"
+                               Style="{x:DynamicResource warningLabelStyle}"/>
+
+                        <Label Style="{x:DynamicResource warningLabelStyle}"
+                               IsVisible="{Binding IsAddNewCourseAvailable}"
+                               xct:TouchEffect.Command="{Binding AddNewCourseButtonTapped}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{xct:Translate ButYouCan}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{xct:Translate AddNewCourse}"
+                                          TextColor="Blue"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
 
                 </xct:StateView>
 
@@ -86,8 +103,20 @@
 
                         <CollectionView.Footer>
 
-                            <BoxView HeightRequest="20"
-                                     Color="{x:DynamicResource cbg_i1}"/>
+                            <StackLayout>
+
+                                <BoxView HeightRequest="20"
+                                         Color="{x:DynamicResource cbg_i1}"/>
+
+                                <Button Text="{xct:Translate AddNewCourse}"
+                                        FontSize="{x:DynamicResource tsize_i6}"
+                                        IsVisible="{Binding IsAddNewCourseAvailable}"
+                                        Command="{Binding AddNewCourseButtonTapped}"/>
+
+                                <BoxView HeightRequest="20"
+                                         Color="{x:DynamicResource cbg_i1}"/>
+
+                            </StackLayout>
 
                         </CollectionView.Footer>
 

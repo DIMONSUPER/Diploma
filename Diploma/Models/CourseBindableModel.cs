@@ -51,8 +51,8 @@ namespace Diploma.Models
             set => SetProperty(ref _lessonsIds, value);
         }
 
-        private ObservableCollection<LessonModel> _lessons;
-        public ObservableCollection<LessonModel> Lessons
+        private ObservableCollection<LessonBindableModel> _lessons;
+        public ObservableCollection<LessonBindableModel> Lessons
         {
             get => _lessons;
             set => SetProperty(ref _lessons, value);

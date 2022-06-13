@@ -87,6 +87,8 @@ namespace Diploma.Services.Mapper
             {
                 cfg.CreateMap<UserModel, UserBindableModel>().ReverseMap();
                 cfg.CreateMap<CourseModel, CourseBindableModel>().ReverseMap();
+                cfg.CreateMap<LessonModel, LessonBindableModel>().ReverseMap();
+                cfg.CreateMap<TaskModel, TaskBindableModel>().ReverseMap();
             });
 
             _mapperCompletionSource.TrySetResult(mapperConfiguration.CreateMapper());

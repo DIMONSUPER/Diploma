@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-
-namespace Diploma.Views.Modal
+﻿namespace Diploma.Views.Modal
 {
-    public partial class NewCoursePage : ContentPage
+    public partial class NewCoursePage : BaseModalContentPage
     {
         public NewCoursePage()
         {

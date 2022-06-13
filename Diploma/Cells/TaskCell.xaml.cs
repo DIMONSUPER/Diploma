@@ -2,9 +2,9 @@
 
 namespace Diploma.Cells
 {
-    public partial class LessonCell : Grid
+    public partial class TaskCell : StackLayout
     {
-        public LessonCell()
+        public TaskCell()
         {
             InitializeComponent();
         }

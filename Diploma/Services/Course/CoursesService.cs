@@ -56,6 +56,7 @@ namespace Diploma.Services.Course
             for (int i = 0; i < mappedCourses.Count; i++)
             {
                 mappedCourses[i].Users = new(await GetUsersForCourseAsync(mappedCourses[i]));
+                mappedCourses[i].Lessons = new(await GetLessonsForCourseAsync(mappedCourses[i]));
 
                 var teacherResponse = await _userService.GetUserByIdAsync(mappedCourses[i].TeacherId);
                 if (teacherResponse.IsSuccess)
@@ -67,9 +68,100 @@ namespace Diploma.Services.Course
             return mappedCourses;
         }
 
+        public Task<AOResult<CourseModel>> PostNewCourseAsync(CourseModel course)
+        {
+            return AOResult.ExecuteTaskAsync(async onFailure =>
+            {
+                var url = $"{Constants.BASE_URL}/courses";
+
+                var data = new
+                {
+                    data = new
+                    {
+                        name = course.Name,
+                        description = course.Description,
+                        rating = 0,
+                        category = course.Category,
+                        image_url = course.ImageUrl,
+                        lessons = course.LessonsIds,
+                        users = course.UsersIds,
+                        teacher_id = course.TeacherId,
+                        language = course.Language,
+                        is_visible = course.IsVisible,
+                    }
+                };
+
+                var response = await _restService.PostAsync<JToken>(url, data);
+
+                if (response is null)
+                {
+                    onFailure("Course is null");
+                }
+
+                return JTokenHelper.ParseFromJToken<CourseModel>(response).FirstOrDefault();
+            });
+        }
+
+        public Task<AOResult<LessonModel>> PostNewLessonForCourseAsync(LessonBindableModel lesson, int courseId)
+        {
+            return AOResult.ExecuteTaskAsync(async onFailure =>
+            {
+                var taskIds = (await Task.WhenAll(lesson.Tasks.Select(x => PostNewTaskAsync(x)))).Select(x => x.Id);
+
+                lesson.TaskIds = new(taskIds);
+
+                var lessonModel = await PostLessonForCourseAsync(courseId, lesson);
+
+                await Task.WhenAll(taskIds.Select(x => PutLessonIdForTaskAsync(x, lessonModel.Id)));
+
+                return lessonModel;
+            });
+        }
+
         #endregion
 
         #region -- Private helpers --
+
+        private async Task<IEnumerable<LessonBindableModel>> GetLessonsForCourseAsync(CourseBindableModel course)
+        {
+            var result = new List<LessonBindableModel>();
+
+            if (course.LessonsIds?.Any() ?? false)
+            {
+                var url = $"{Constants.BASE_URL}/lessons";
+
+                var response = await _restService.GetAsync<JToken>(url);
+
+                var lessonModels = JTokenHelper.ParseFromJToken<LessonModel>(response);
+
+                result = (await _mapperService.MapRangeAsync<LessonBindableModel>(lessonModels)).ToList();
+
+                for (int i = 0; i < result.Count; i++)
+                {
+                    result[i].Tasks = new(await GetTasksForLessonAsync(result[i]));
+                }
+            }
+
+            return result;
+        }
+
+        private async Task<IEnumerable<TaskBindableModel>> GetTasksForLessonAsync(LessonBindableModel lesson)
+        {
+            var result = Enumerable.Empty<TaskBindableModel>();
+
+            if (lesson.TaskIds?.Any() ?? false)
+            {
+                var url = $"{Constants.BASE_URL}/tasks";
+
+                var response = await _restService.GetAsync<JToken>(url);
+
+                var taskModels = JTokenHelper.ParseFromJToken<TaskModel>(response);
+
+                result = await _mapperService.MapRangeAsync<TaskBindableModel>(taskModels);
+            }
+
+            return result;
+        }
 
         private async Task<IEnumerable<UserBindableModel>> GetUsersForCourseAsync(CourseBindableModel course)
         {
@@ -84,6 +176,97 @@ namespace Diploma.Services.Course
             }
 
             return result;
+        }
+
+        private async Task<CourseModel> GetCourseByIdAsync(int id)
+        {
+            var url = $"{Constants.BASE_URL}/courses?filters[id][$eq]={id}";
+
+            var response = await _restService.GetAsync<JToken>(url);
+
+            return JTokenHelper.ParseFromJToken<CourseModel>(response)?.FirstOrDefault();
+        }
+
+        private async Task<TaskModel> PostNewTaskAsync(TaskBindableModel task)
+        {
+            var url = $"{Constants.BASE_URL}/tasks";
+
+            var data = new
+            {
+                data = new
+                {
+                    question = task.Question,
+                    answer = task.Answer,
+                    type = task.Type,
+                    possible_answers = task.PossibleAnswers,
+                }
+            };
+
+            var response = await _restService.PostAsync<JToken>(url, data);
+
+            return JTokenHelper.ParseFromJToken<TaskModel>(response).FirstOrDefault();
+        }
+
+        private async Task<TaskModel> PutLessonIdForTaskAsync(int taskId, int lessonId)
+        {
+            var url = $"{Constants.BASE_URL}/tasks";
+
+            var data = new
+            {
+                data = new
+                {
+                    lesson_id = lessonId
+                }
+            };
+
+            var response = await _restService.PostAsync<JToken>(url, data);
+
+            return JTokenHelper.ParseFromJToken<TaskModel>(response).FirstOrDefault();
+        }
+
+        private async Task<LessonModel> PostLessonAsync(LessonBindableModel lessonModel)
+        {
+            var url = $"{Constants.BASE_URL}/lessons";
+
+            var data = new
+            {
+                data = new
+                {
+                    title = lessonModel.Title,
+                    part = lessonModel.Part,
+                    video_url = lessonModel.VideoUrl,
+                    description = lessonModel.Description,
+                    tasks = lessonModel.TaskIds,
+                }
+            };
+
+            var response = await _restService.PostAsync<JToken>(url, data);
+
+            return JTokenHelper.ParseFromJToken<LessonModel>(response).FirstOrDefault();
+        }
+
+        private async Task<LessonModel> PostLessonForCourseAsync(int courseId, LessonBindableModel lessonModel)
+        {
+            var postedLesson = await PostLessonAsync(lessonModel);
+
+            var currentCourse = await GetCourseByIdAsync(courseId);
+
+            var lessonIds = currentCourse.LessonsIds.ToList();
+            lessonIds.Add(postedLesson.Id);
+
+            var url = $"{Constants.BASE_URL}/courses/{courseId}";
+
+            var data = new
+            {
+                data = new
+                {
+                    lessons = lessonIds,
+                }
+            };
+
+            var response = await _restService.PutAsync<CourseModel>(url, data);
+
+            return postedLesson;
         }
 
         #endregion

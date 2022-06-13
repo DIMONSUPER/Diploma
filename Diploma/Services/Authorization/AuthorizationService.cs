@@ -30,6 +30,8 @@ namespace Diploma.Services.Authorization
 
         public bool IsAuthorized => _settingsManager.IsAuthorized;
 
+        public int UserId => _settingsManager.AuthorizationSettings.UserId;
+
         public Task<AOResult<UserModel>> LoginAsync(string identifier, string password)
         {
             return AOResult.ExecuteTaskAsync(async onFailure =>

@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Diploma.Events;
+using Diploma.Helpers;
 using Diploma.Models;
 using Diploma.Services.Authorization;
 using Diploma.Services.Course;
 using Diploma.Services.Mapper;
 using Diploma.Services.User;
+using Diploma.Views;
+using Diploma.Views.Modal;
 using Prism.Events;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -50,15 +55,43 @@ namespace Diploma.ViewModels.Tabs
             set => SetProperty(ref _homeItems, value);
         }
 
+        private bool _isAddNewCourseAvailable;
+        public bool IsAddNewCourseAvailable
+        {
+            get => _isAddNewCourseAvailable;
+            set => SetProperty(ref _isAddNewCourseAvailable, value);
+        }
+
+        private ICommand _addNewCourseButtonTapped;
+        public ICommand AddNewCourseButtonTapped => _addNewCourseButtonTapped ??= SingleExecutionCommand.FromFunc(OnAddNewCourseButtonTappedAsync);
+
+        private ICommand _courseTappedCommand;
+        public ICommand CourseTappedCommand => _courseTappedCommand ??= SingleExecutionCommand.FromFunc<CourseBindableModel>(OnCourseTappedCommandAsync);
+
+        private ICommand _lessonTappedCommand;
+        public ICommand LessonTappedCommand => _lessonTappedCommand ??= SingleExecutionCommand.FromFunc<LessonBindableModel>(OnLessonTappedCommandAsync);
+
         #endregion
 
         #region -- Overrides --
 
-        public override async void Initialize(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            base.Initialize(parameters);
+            base.OnNavigatedTo(parameters);
+
+            CurrentState = LayoutState.Loading;
 
             await UpdateCoursesAsync();
+
+            if (_authorizationService.IsAuthorized)
+            {
+                var userResponse = await _userService.GetUserByIdAsync(_authorizationService.UserId);
+
+                if (userResponse.IsSuccess)
+                {
+                    IsAddNewCourseAvailable = userResponse.Result.RoleId == 1;
+                }
+            }
         }
 
         protected override async void OnConnectionChanged(object sender, ConnectivityChangedEventArgs e)
@@ -75,21 +108,50 @@ namespace Diploma.ViewModels.Tabs
 
         #region -- Private helpers --
 
+        private Task OnLessonTappedCommandAsync(LessonBindableModel lesson)
+        {
+            return NavigationService.NavigateAsync(nameof(LessonPage), (nameof(LessonBindableModel), lesson));
+        }
+
+        private Task OnCourseTappedCommandAsync(CourseBindableModel course)
+        {
+            return NavigationService.NavigateAsync(nameof(CoursePage), (nameof(CourseBindableModel), course));
+        }
+
+        private Task OnAddNewCourseButtonTappedAsync()
+        {
+            return NavigationService.NavigateAsync(nameof(NewCoursePage), new NavigationParameters(), true, true);
+        }
+
         private async Task UpdateCoursesAsync()
         {
             CurrentState = LayoutState.Loading;
 
             var coursesResponse = await _coursesService.GetAllCoursesAsync();
 
+            var tmpCollection = new List<CarouselBindableModel>();
+
             if (coursesResponse.IsSuccess)
             {
-                var courses = await _coursesService.ConvertToBindableCourses(coursesResponse.Result);
+                var courses = (await _coursesService.ConvertToBindableCourses(coursesResponse.Result)).ToList();
+
+                foreach (var course in courses)
+                {
+                    course.TappedCommand = CourseTappedCommand;
+
+                    foreach (var lesson in course.Lessons)
+                    {
+                        lesson.TappedCommand = LessonTappedCommand;
+                    }
+                }
 
                 foreach (var group in courses.GroupBy(x => x.Category).OrderBy(x => x.Key))
                 {
-                    HomeItems.Add(new() { Items = new(group), Title = group.Key });
+                    tmpCollection.Add(new() { Items = new(group), Title = group.Key });
                 }
             }
+
+            HomeItems = new(tmpCollection);
 
             if (HomeItems.Any())
             {

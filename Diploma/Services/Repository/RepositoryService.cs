@@ -21,6 +21,7 @@ namespace Diploma.Services.Repository
             InitTable<UserModel>();
             InitTable<LessonModel>();
             InitTable<CourseModel>();
+            InitTable<TaskModel>();
         }
 
         public async Task<int> DeleteAsync<T>(T entity) where T : IDTOModel, new()

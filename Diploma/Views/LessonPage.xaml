@@ -8,10 +8,9 @@
                        xmlns:vms="clr-namespace:Diploma.ViewModels"
                        xmlns:prism="http://prismlibrary.com"
                        xmlns:models="clr-namespace:Diploma.Models"
-                       xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                       x:Class="Diploma.Views.CoursePage"
+                       x:Class="Diploma.Views.LessonPage"
                        BackgroundColor="{x:DynamicResource cbg_i1}"
-                       x:DataType="{x:Type vms:CoursePageViewModel}">
+                       x:DataType="{x:Type vms:LessonPageViewModel}">
 
     <views:BaseContentPage.Resources>
 
@@ -40,7 +39,7 @@
         <CollectionView ItemSizingStrategy="MeasureFirstItem"
                         ItemsUpdatingScrollMode="KeepScrollOffset"
                         SelectionMode="None"
-                        ItemsSource="{Binding CurrentCourse.Lessons}"
+                        ItemsSource="{Binding CurrentLesson.Tasks}"
                         VerticalScrollBarVisibility="Never">
 
             <CollectionView.ItemsLayout>
@@ -85,16 +84,16 @@
                                  Orientation="Vertical"
                                  Padding="0,10,0,0">
 
-                        <ff:CachedImage Source="{Binding CurrentCourse.ImageUrl}"
-                                        HeightRequest="160"
-                                        Aspect="AspectFit"/>
+                        <xct:MediaElement Source="{Binding CurrentLesson.VideoUrl}"
+                                          HeightRequest="160"
+                                          Aspect="AspectFit"/>
 
-                        <Label Text="{Binding CurrentCourse.Name}"
+                        <Label Text="{Binding CurrentLesson.Title}"
                                FontSize="{x:DynamicResource tsize_i5}"
                                Style="{x:DynamicResource textLabelStyle}"
                                Margin="20,0"/>
 
-                        <Label Text="{Binding CurrentCourse.Description}"
+                        <Label Text="{Binding CurrentLesson.Description}"
                                FontSize="{x:DynamicResource tsize_i3}"
                                Style="{x:DynamicResource textLabelStyle}"
                                FontAttributes="None"
@@ -111,9 +110,9 @@
 
             <CollectionView.ItemTemplate>
 
-                <DataTemplate x:DataType="{x:Type models:LessonBindableModel}">
+                <DataTemplate x:DataType="{x:Type models:TaskBindableModel}">
 
-                    <cells:LessonCell/>
+                    <cells:LessonTaskCell/>
 
                 </DataTemplate>
 
@@ -126,13 +125,12 @@
                     <BoxView HeightRequest="20"
                              Color="{x:DynamicResource cbg_i1}"/>
 
-                    <Button Text="{xct:Translate AddNewLesson}"
-                            FontSize="{x:DynamicResource tsize_i6}"
-                            IsVisible="{Binding IsAddNewLessonAvailable}"
-                            Command="{Binding AddNewLessonButtonTapped}"/>
+                    <Button Text="{xct:Translate Complete}"
+                            FontSize="{x:DynamicResource tsize_i5}"
+                            Command="{Binding CompleteButtonTappedCommand}"/>
 
                     <BoxView HeightRequest="20"
-                              Color="{x:DynamicResource cbg_i1}"/>
+                             Color="{x:DynamicResource cbg_i1}"/>
 
                 </StackLayout>
 

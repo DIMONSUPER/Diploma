@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Diploma.Models"
+             xmlns:helpers="clr-namespace:Diploma.Helpers"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Diploma.Cells.TaskCell"
+             x:DataType="{x:Type models:TaskBindableModel}">
+
+    <StackLayout.Resources>
+
+        <ResourceDictionary>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i2}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+            </Style>
+
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </StackLayout.Resources>
+
+    <Entry Text="{Binding Question}"
+           Placeholder="{xct:Translate Question}"/>
+
+    <Editor Text="{Binding PossibleAnswersText}"
+            Placeholder="{xct:Translate PossibleAnswers}"
+            HeightRequest="120"/>
+
+    <Entry Text="{Binding Answer}"
+           Placeholder="{xct:Translate Answer}"/>
+
+</StackLayout>

@@ -1,9 +1,141 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Diploma.Views.Modal.NewLessonPage">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
-</ContentPage>
+<modal:BaseModalContentPage xmlns:modal="clr-namespace:Diploma.Views.Modal"
+                            xmlns="http://xamarin.com/schemas/2014/forms"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            xmlns:helpers="clr-namespace:Diploma.Helpers"
+                            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                            xmlns:vms="clr-namespace:Diploma.ViewModels.Modal"
+                            xmlns:cells="clr-namespace:Diploma.Cells"
+                            x:Class="Diploma.Views.Modal.NewLessonPage"
+                            BackgroundColor="{x:DynamicResource cbg_i1}"
+                            x:DataType="{x:Type vms:NewLessonPageViewModel}">
+
+    <modal:BaseModalContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="iconStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{x:DynamicResource fontAwesomeSolid}"/>
+                <Setter Property="FontSize" Value="{x:DynamicResource itsize_i7}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+            </Style>
+
+            <Style x:Key="textLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource cbg_i4}"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="{x:DynamicResource tsize_i3}"/>
+                <Setter Property="TextColor" Value="{x:DynamicResource tcolor_i4}"/>
+                <Setter Property="BackgroundColor" Value="{x:DynamicResource cbg_i3}"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </modal:BaseModalContentPage.Resources>
+
+    <modal:BaseModalContentPage.Content>
+
+        <ScrollView>
+
+            <Grid RowDefinitions="60, 1, *"
+                  ColumnDefinitions="40, *"
+                  Margin="0,10,0,0"
+                  RowSpacing="0">
+
+                <Label Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="{xct:Translate NewLesson}"
+                       TextColor="{x:DynamicResource cbg_i4}"
+                       FontSize="{x:DynamicResource tsize_i5}"
+                       FontAttributes="Bold"/>
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{x:Static helpers:FontIcons.ArrowLeft}"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Style="{x:DynamicResource iconStyle}"
+                       xct:TouchEffect.Command="{Binding BackButtonTappedCommand}"/>
+
+                <Button Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="End"
+                        Text="{xct:Translate Add}"
+                        TextColor="{x:DynamicResource cbg_i4}"
+                        FontSize="{x:DynamicResource tsize_i5}"
+                        FontAttributes="Bold"
+                        BackgroundColor="Transparent"
+                        Margin="0,0,20,0"
+                        VerticalOptions="Center"
+                        IsEnabled="{Binding IsAddButtonEnabled}"
+                        Command="{Binding AddButtonTappedCommand}">
+                    <Button.Triggers>
+                        <DataTrigger Binding="{Binding IsAddButtonEnabled}"
+                                     Value="False"
+                                     TargetType="Button">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <!-- LINE -->
+                <BoxView Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         Color="{x:DynamicResource cbg_i3}"
+                         HeightRequest="1"/>
+
+                <StackLayout Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             Spacing="15"
+                             Orientation="Vertical"
+                             Margin="0,40,0,0"
+                             WidthRequest="260"
+                             HorizontalOptions="Center">
+
+                    <Entry Text="{Binding Title}"
+                           Placeholder="{xct:Translate Title}"/>
+
+                    <Entry Text="{Binding VideoUrl}"
+                           Placeholder="{xct:Translate VideoUrl}"/>
+
+                    <Entry Text="{Binding Part}"
+                           Placeholder="{xct:Translate Part}"
+                           Keyboard="Numeric"/>
+
+                    <Editor Text="{Binding Description}"
+                            Placeholder="{xct:Translate Description}"
+                            HeightRequest="100"
+                            Margin="0,10,0,20"/>
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding Tasks}"
+                                 Spacing="15">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <cells:TaskCell/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </StackLayout>
+
+                    <Button Text="{xct:Translate AddNewQuestion}"
+                            FontSize="{x:DynamicResource tsize_i6}"
+                            Command="{Binding AddTaskButtonTappedCommand}"
+                            Margin="0,20,0,0"/>
+
+                </StackLayout>
+
+            </Grid>
+
+        </ScrollView>
+
+    </modal:BaseModalContentPage.Content>
+
+</modal:BaseModalContentPage>

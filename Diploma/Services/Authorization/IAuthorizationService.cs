@@ -10,6 +10,8 @@ namespace Diploma.Services.Authorization
 
         Task<AOResult<UserModel>> RegisterAsync(UserModel userModel, string password);
 
-        public bool IsAuthorized { get; }
+        bool IsAuthorized { get; }
+
+        int UserId { get; }
     }
 }

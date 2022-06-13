@@ -205,4 +205,96 @@
 		<value>Save</value>
 		<comment>Save</comment>
 	</data>
+	<data name="AddNewCourse" xml:space="preserve">
+		<value>Add new course</value>
+		<comment>Add new course</comment>
+	</data>
+	<data name="ButYouCan" xml:space="preserve">
+		<value>But you can</value>
+		<comment>But you can</comment>
+	</data>
+	<data name="Add" xml:space="preserve">
+		<value>Add</value>
+		<comment>Add</comment>
+	</data>
+	<data name="NewCourse" xml:space="preserve">
+		<value>New course</value>
+		<comment>New course</comment>
+	</data>
+	<data name="CourseTitle" xml:space="preserve">
+		<value>Course title</value>
+		<comment>Course title</comment>
+	</data>
+	<data name="ImageUrl" xml:space="preserve">
+		<value>Image URL</value>
+		<comment>Image URL</comment>
+	</data>
+	<data name="Category" xml:space="preserve">
+		<value>Category</value>
+		<comment>Category</comment>
+	</data>
+	<data name="VisibleForUsers" xml:space="preserve">
+		<value>Visible for users</value>
+		<comment>Visible for users</comment>
+	</data>
+	<data name="Course" xml:space="preserve">
+		<value>Course</value>
+		<comment>Course</comment>
+	</data>
+	<data name="Question" xml:space="preserve">
+		<value>Question</value>
+		<comment>Question</comment>
+	</data>
+	<data name="Answer" xml:space="preserve">
+		<value>Answer</value>
+		<comment>Answer</comment>
+	</data>
+	<data name="Type" xml:space="preserve">
+		<value>Type</value>
+		<comment>Type</comment>
+	</data>
+	<data name="PossibleAnswers" xml:space="preserve">
+		<value>Possible answers(each from new line)</value>
+		<comment>Possible answers(each from new line)</comment>
+	</data>
+	<data name="OneAnswer" xml:space="preserve">
+		<value>One answer</value>
+		<comment>One answer</comment>
+	</data>
+	<data name="MultipleAnswers" xml:space="preserve">
+		<value>Multiple answers</value>
+		<comment>Multiple answers</comment>
+	</data>
+	<data name="DirectAnswer" xml:space="preserve">
+		<value>Direct answer</value>
+		<comment>Direct answer</comment>
+	</data>
+	<data name="VideoUrl" xml:space="preserve">
+		<value>Video URL</value>
+		<comment>Video URL</comment>
+	</data>
+	<data name="Title" xml:space="preserve">
+		<value>Title</value>
+		<comment>Title</comment>
+	</data>
+	<data name="Part" xml:space="preserve">
+		<value>Part</value>
+		<comment>Part</comment>
+	</data>
+	<data name="AddNewQuestion" xml:space="preserve">
+		<value>Add new question</value>
+		<comment>Add new question</comment>
+	</data>
+	<data name="AddNewLesson" xml:space="preserve">
+		<value>Add new lesson</value>
+		<comment>Add new lesson</comment>
+	</data>
+	<data name="NewLesson" xml:space="preserve">
+		<value>New lesson</value>
+		<comment>New lesson</comment>
+	</data>
+	<data name="Complete" xml:space="preserve">
+		<value>Complete</value>
+		<comment>Complete</comment>
+	</data>
 </root>

@@ -3,13 +3,16 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:models="clr-namespace:Diploma.Models"
        xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
        x:Class="Diploma.Cells.CarouselCourseCell"
        x:DataType="{x:Type models:CourseBindableModel}"
        IsClippedToBounds="True"
        HasShadow="False"
        Padding="0"
        WidthRequest="250"
-       BackgroundColor="{x:DynamicResource cbg_i3}">
+       BackgroundColor="{x:DynamicResource cbg_i3}"
+       xct:TouchEffect.Command="{Binding TappedCommand}"
+       xct:TouchEffect.CommandParameter="{Binding .}">
 
     <Frame.Resources>
 

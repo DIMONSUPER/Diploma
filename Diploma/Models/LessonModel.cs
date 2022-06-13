@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using SQLite;
 
 namespace Diploma.Models
@@ -15,6 +16,21 @@ namespace Diploma.Models
 
         #region -- Public properties --
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("part")]
+        public int Part { get; set; }
+
+        [JsonProperty("video_url")]
+        public string VideoUrl { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [Ignore]
+        [JsonProperty("tasks")]
+        public List<int> TaskIds { get; set; }
 
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿namespace Diploma.Views
 {
-    public partial class CoursePage : BaseContentPage
+    public partial class LessonPage : BaseContentPage
     {
-        public CoursePage()
+        public LessonPage()
         {
             InitializeComponent();
         }
