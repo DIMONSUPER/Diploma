@@ -47,7 +47,7 @@ namespace Diploma.Models
 
         [Ignore]
         [JsonProperty("users")]
-        public IEnumerable<int> UsersIds { get; set; }
+        public List<int> UsersIds { get; set; }
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }

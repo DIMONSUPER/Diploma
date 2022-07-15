@@ -134,7 +134,7 @@ namespace Diploma.ViewModels.Modal
 
         private Task OnBackButtonTappedCommandAsync()
         {
-            return NavigationService.GoBackAsync(new NavigationParameters(), true, true);
+            return NavigationService.GoBackAsync();
         }
 
         private async Task OnAddButtonTappedCommandAsync()
@@ -155,9 +155,9 @@ namespace Diploma.ViewModels.Modal
                     Tasks = Tasks,
                 };
 
-                var createNewCourseResponse = await _coursesService.PostNewLessonForCourseAsync(newLesson, _currentCourseId);
+                var createNewLessonResponse = await _coursesService.PostNewLessonForCourseAsync(newLesson, _currentCourseId);
 
-                if (createNewCourseResponse.IsSuccess)
+                if (createNewLessonResponse.IsSuccess)
                 {
                     await OnBackButtonTappedCommandAsync();
                 }

@@ -129,7 +129,7 @@ namespace Diploma.ViewModels.Modal
             set => SetProperty(ref _description, value);
         }
 
-        private bool _isSignUpButtonEnabled;
+        private bool _isSignUpButtonEnabled = true;
         public bool IsSignUpButtonEnabled
         {
             get => _isSignUpButtonEnabled;

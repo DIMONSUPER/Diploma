@@ -42,6 +42,7 @@ namespace Diploma.ViewModels.Tabs
             _mapperService = mapperService;
 
             EventAggregator.GetEvent<LanguageChangedEvent>().Subscribe(OnLanguageChanged);
+            EventAggregator.GetEvent<AuthChangedEvent>().Subscribe(OnAuthChanged);
 
             CurrentState = LayoutState.Loading;
         }
@@ -82,16 +83,6 @@ namespace Diploma.ViewModels.Tabs
             CurrentState = LayoutState.Loading;
 
             await UpdateCoursesAsync();
-
-            if (_authorizationService.IsAuthorized)
-            {
-                var userResponse = await _userService.GetUserByIdAsync(_authorizationService.UserId);
-
-                if (userResponse.IsSuccess)
-                {
-                    IsAddNewCourseAvailable = userResponse.Result.RoleId == 1;
-                }
-            }
         }
 
         protected override async void OnConnectionChanged(object sender, ConnectivityChangedEventArgs e)
@@ -153,6 +144,16 @@ namespace Diploma.ViewModels.Tabs
 
             HomeItems = new(tmpCollection);
 
+            if (_authorizationService.IsAuthorized)
+            {
+                var userResponse = await _userService.GetUserByIdAsync(_authorizationService.UserId);
+
+                if (userResponse.IsSuccess)
+                {
+                    IsAddNewCourseAvailable = userResponse.Result.RoleId == 1;
+                }
+            }
+
             if (HomeItems.Any())
             {
                 CurrentState = LayoutState.Success;
@@ -168,6 +169,13 @@ namespace Diploma.ViewModels.Tabs
         }
 
         private async void OnLanguageChanged(string language)
+        {
+            HomeItems = new();
+
+            await UpdateCoursesAsync();
+        }
+
+        private async void OnAuthChanged(bool isAuthorized)
         {
             HomeItems = new();
 

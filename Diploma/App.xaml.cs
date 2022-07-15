@@ -71,6 +71,7 @@ namespace Diploma
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<ICoursesService>(Container.Resolve<CoursesService>());
+            containerRegistry.RegisterInstance<Services.Notification.INotificationService>(Container.Resolve<Services.Notification.NotificationService>());
         }
 
         protected override async void OnInitialized()

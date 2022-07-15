@@ -196,5 +196,281 @@ namespace Diploma.Resources.Strings {
                 return ResourceManager.GetString("Ukrainian", resourceCulture);
             }
         }
+        
+        internal static string IncorrectLoginOrPassword {
+            get {
+                return ResourceManager.GetString("IncorrectLoginOrPassword", resourceCulture);
+            }
+        }
+        
+        internal static string UsernameOrEmail {
+            get {
+                return ResourceManager.GetString("UsernameOrEmail", resourceCulture);
+            }
+        }
+        
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        internal static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        internal static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        internal static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        internal static string LogOutMessage {
+            get {
+                return ResourceManager.GetString("LogOutMessage", resourceCulture);
+            }
+        }
+        
+        internal static string UserWithSuchEmail {
+            get {
+                return ResourceManager.GetString("UserWithSuchEmail", resourceCulture);
+            }
+        }
+        
+        internal static string UserWithSuchUsername {
+            get {
+                return ResourceManager.GetString("UserWithSuchUsername", resourceCulture);
+            }
+        }
+        
+        internal static string UserMustContain {
+            get {
+                return ResourceManager.GetString("UserMustContain", resourceCulture);
+            }
+        }
+        
+        internal static string EmailDoesntExist {
+            get {
+                return ResourceManager.GetString("EmailDoesntExist", resourceCulture);
+            }
+        }
+        
+        internal static string Student {
+            get {
+                return ResourceManager.GetString("Student", resourceCulture);
+            }
+        }
+        
+        internal static string Teacher {
+            get {
+                return ResourceManager.GetString("Teacher", resourceCulture);
+            }
+        }
+        
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordMustContain {
+            get {
+                return ResourceManager.GetString("PasswordMustContain", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordsDontMatch {
+            get {
+                return ResourceManager.GetString("PasswordsDontMatch", resourceCulture);
+            }
+        }
+        
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        internal static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
+            }
+        }
+        
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        internal static string AddNewCourse {
+            get {
+                return ResourceManager.GetString("AddNewCourse", resourceCulture);
+            }
+        }
+        
+        internal static string ButYouCan {
+            get {
+                return ResourceManager.GetString("ButYouCan", resourceCulture);
+            }
+        }
+        
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        internal static string NewCourse {
+            get {
+                return ResourceManager.GetString("NewCourse", resourceCulture);
+            }
+        }
+        
+        internal static string CourseTitle {
+            get {
+                return ResourceManager.GetString("CourseTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ImageUrl {
+            get {
+                return ResourceManager.GetString("ImageUrl", resourceCulture);
+            }
+        }
+        
+        internal static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        internal static string VisibleForUsers {
+            get {
+                return ResourceManager.GetString("VisibleForUsers", resourceCulture);
+            }
+        }
+        
+        internal static string Course {
+            get {
+                return ResourceManager.GetString("Course", resourceCulture);
+            }
+        }
+        
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        internal static string Answer {
+            get {
+                return ResourceManager.GetString("Answer", resourceCulture);
+            }
+        }
+        
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        internal static string PossibleAnswers {
+            get {
+                return ResourceManager.GetString("PossibleAnswers", resourceCulture);
+            }
+        }
+        
+        internal static string OneAnswer {
+            get {
+                return ResourceManager.GetString("OneAnswer", resourceCulture);
+            }
+        }
+        
+        internal static string MultipleAnswers {
+            get {
+                return ResourceManager.GetString("MultipleAnswers", resourceCulture);
+            }
+        }
+        
+        internal static string DirectAnswer {
+            get {
+                return ResourceManager.GetString("DirectAnswer", resourceCulture);
+            }
+        }
+        
+        internal static string VideoUrl {
+            get {
+                return ResourceManager.GetString("VideoUrl", resourceCulture);
+            }
+        }
+        
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        internal static string Part {
+            get {
+                return ResourceManager.GetString("Part", resourceCulture);
+            }
+        }
+        
+        internal static string AddNewQuestion {
+            get {
+                return ResourceManager.GetString("AddNewQuestion", resourceCulture);
+            }
+        }
+        
+        internal static string AddNewLesson {
+            get {
+                return ResourceManager.GetString("AddNewLesson", resourceCulture);
+            }
+        }
+        
+        internal static string NewLesson {
+            get {
+                return ResourceManager.GetString("NewLesson", resourceCulture);
+            }
+        }
+        
+        internal static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
+            }
+        }
     }
 }

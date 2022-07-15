@@ -137,7 +137,7 @@ namespace Diploma.ViewModels.Modal
                 }
                 else
                 {
-
+                    await OnBackButtonTappedCommandAsync();
                 }
             }
             else

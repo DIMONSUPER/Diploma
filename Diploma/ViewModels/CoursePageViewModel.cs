@@ -41,6 +41,9 @@ namespace Diploma.ViewModels
         private ICommand _addNewLessonButtonTapped;
         public ICommand AddNewLessonButtonTapped => _addNewLessonButtonTapped ??= SingleExecutionCommand.FromFunc(OnAddNewLessonButtonTappedAsync);
 
+        private ICommand _backButtonTappedCommand;
+        public ICommand BackButtonTappedCommand => _backButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnBackButtonTappedCommandAsync);
+
         #endregion
 
         #region -- Overrides --
@@ -60,6 +63,11 @@ namespace Diploma.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private Task OnBackButtonTappedCommandAsync()
+        {
+            return NavigationService.GoBackAsync();
+        }
 
         private Task OnAddNewLessonButtonTappedAsync()
         {

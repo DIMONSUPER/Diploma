@@ -112,7 +112,6 @@
 		<value>Ukrainian</value>
 		<comment>Ukrainian</comment>
 	</data>
-	<!--TODO-->
 	<data name="IncorrectLoginOrPassword" xml:space="preserve">
 		<value>Login or password is incorrect</value>
 		<comment>Login or password is incorrect</comment>

@@ -13,10 +13,22 @@ namespace Diploma.Helpers
 
             foreach (var data in token["data"])
             {
-                var model = JsonSerializer.Create().Deserialize<T>(data["attributes"].CreateReader());
+                var attributes = data["attributes"];
+                var model = JsonSerializer.Create().Deserialize<T>(attributes.CreateReader());
                 model.Id = data.Value<int>("id");
                 result.Add(model);
             }
+
+            return result;
+        }
+
+        public static T ParseFromJTokenSingle<T>(JToken token) where T : IDTOModel, new()
+        {
+            T result = new();
+
+            result = JsonSerializer.Create().Deserialize<T>(token["data"]["attributes"].CreateReader());
+
+            result.Id = token["data"].Value<int>("id");
 
             return result;
         }

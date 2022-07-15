@@ -112,4 +112,188 @@
 		<value>Українська</value>
 		<comment>Ukrainian</comment>
 	</data>
+	<data name="IncorrectLoginOrPassword" xml:space="preserve">
+		<value>Логін або пароль неправильний</value>
+		<comment>Login or password is incorrect</comment>
+	</data>
+	<data name="UsernameOrEmail" xml:space="preserve">
+		<value>Юзернейм або пошта</value>
+		<comment>Username or email</comment>
+	</data>
+	<data name="Email" xml:space="preserve">
+		<value>Пошта</value>
+		<comment>Email</comment>
+	</data>
+	<data name="Username" xml:space="preserve">
+		<value>Юзернейм</value>
+		<comment>Username</comment>
+	</data>
+	<data name="Password" xml:space="preserve">
+		<value>Пароль</value>
+		<comment>Password</comment>
+	</data>
+	<data name="ConfirmPassword" xml:space="preserve">
+		<value>Підтвердження паролю</value>
+		<comment>Confirm password</comment>
+	</data>
+	<data name="SignIn" xml:space="preserve">
+		<value>Вхід</value>
+		<comment>Sign in</comment>
+	</data>
+	<data name="SignUp" xml:space="preserve">
+		<value>Реєстрація</value>
+		<comment>Sign up</comment>
+	</data>
+	<data name="LogOutMessage" xml:space="preserve">
+		<value>Ви впевнені що хочете вийти з акаунту?</value>
+		<comment>Are you sure you want to log out?</comment>
+	</data>
+	<data name="UserWithSuchEmail" xml:space="preserve">
+		<value>Користувач з такою поштою вже існує</value>
+		<comment>User with such email already exists</comment>
+	</data>
+	<data name="UserWithSuchUsername" xml:space="preserve">
+		<value>Користувач з таким юзернеймом вже існує</value>
+		<comment>User with such username already exists</comment>
+	</data>
+	<data name="UserMustContain" xml:space="preserve">
+		<value>Юзернейм повинен мати мінімум чотири символи</value>
+		<comment>Username must contain at least 4 characters</comment>
+	</data>
+	<data name="EmailDoesntExist" xml:space="preserve">
+		<value>Пошта не існує</value>
+		<comment>Email doesn't exist</comment>
+	</data>
+	<data name="Student" xml:space="preserve">
+		<value>Студент</value>
+		<comment>Student</comment>
+	</data>
+	<data name="Teacher" xml:space="preserve">
+		<value>Вчитель</value>
+		<comment>Teacher</comment>
+	</data>
+	<data name="FirstName" xml:space="preserve">
+		<value>Імʼя</value>
+		<comment>First name</comment>
+	</data>
+	<data name="LastName" xml:space="preserve">
+		<value>Фамілія</value>
+		<comment>Last name</comment>
+	</data>
+	<data name="PasswordMustContain" xml:space="preserve">
+		<value>Пароль повинен мати мінімум 6 символів</value>
+		<comment>Password must contain at least 6 characters</comment>
+	</data>
+	<data name="PasswordsDontMatch" xml:space="preserve">
+		<value>Паролі не збігаються</value>
+		<comment>Passwords don't match</comment>
+	</data>
+	<data name="Description" xml:space="preserve">
+		<value>Опис</value>
+		<comment>Description</comment>
+	</data>
+	<data name="Loading" xml:space="preserve">
+		<value>Завантаження</value>
+		<comment>Loading</comment>
+	</data>
+	<data name="EditProfile" xml:space="preserve">
+		<value>Редагування</value>
+		<comment>Edit profile</comment>
+	</data>
+	<data name="Save" xml:space="preserve">
+		<value>Зберегти</value>
+		<comment>Save</comment>
+	</data>
+	<data name="AddNewCourse" xml:space="preserve">
+		<value>Додати новий курс</value>
+		<comment>Add new course</comment>
+	</data>
+	<data name="ButYouCan" xml:space="preserve">
+		<value>Але ви можете</value>
+		<comment>But you can</comment>
+	</data>
+	<data name="Add" xml:space="preserve">
+		<value>Додати</value>
+		<comment>Add</comment>
+	</data>
+	<data name="NewCourse" xml:space="preserve">
+		<value>Новий курс</value>
+		<comment>New course</comment>
+	</data>
+	<data name="CourseTitle" xml:space="preserve">
+		<value>Назва курсу</value>
+		<comment>Course title</comment>
+	</data>
+	<data name="ImageUrl" xml:space="preserve">
+		<value>Посилання на картинку</value>
+		<comment>Image URL</comment>
+	</data>
+	<data name="Category" xml:space="preserve">
+		<value>Категорія</value>
+		<comment>Category</comment>
+	</data>
+	<data name="VisibleForUsers" xml:space="preserve">
+		<value>Видимий для користувачів</value>
+		<comment>Visible for users</comment>
+	</data>
+	<data name="Course" xml:space="preserve">
+		<value>Курс</value>
+		<comment>Course</comment>
+	</data>
+	<data name="Question" xml:space="preserve">
+		<value>Питання</value>
+		<comment>Question</comment>
+	</data>
+	<data name="Answer" xml:space="preserve">
+		<value>Відповідь</value>
+		<comment>Answer</comment>
+	</data>
+	<data name="Type" xml:space="preserve">
+		<value>Тип</value>
+		<comment>Type</comment>
+	</data>
+	<data name="PossibleAnswers" xml:space="preserve">
+		<value>Варіанти відповіді(кожен з нового рядка)</value>
+		<comment>Possible answers(each from new line)</comment>
+	</data>
+	<data name="OneAnswer" xml:space="preserve">
+		<value>Одна відповідь</value>
+		<comment>One answer</comment>
+	</data>
+	<data name="MultipleAnswers" xml:space="preserve">
+		<value>Декілька відповідей</value>
+		<comment>Multiple answers</comment>
+	</data>
+	<data name="DirectAnswer" xml:space="preserve">
+		<value>Пряма відповідь</value>
+		<comment>Direct answer</comment>
+	</data>
+	<data name="VideoUrl" xml:space="preserve">
+		<value>Посилання на відео</value>
+		<comment>Video URL</comment>
+	</data>
+	<data name="Title" xml:space="preserve">
+		<value>Назва</value>
+		<comment>Title</comment>
+	</data>
+	<data name="Part" xml:space="preserve">
+		<value>Частина</value>
+		<comment>Part</comment>
+	</data>
+	<data name="AddNewQuestion" xml:space="preserve">
+		<value>Створити нове питання</value>
+		<comment>Add new question</comment>
+	</data>
+	<data name="AddNewLesson" xml:space="preserve">
+		<value>Створити новий урок</value>
+		<comment>Add new lesson</comment>
+	</data>
+	<data name="NewLesson" xml:space="preserve">
+		<value>Новий урок</value>
+		<comment>New lesson</comment>
+	</data>
+	<data name="Complete" xml:space="preserve">
+		<value>Завершити</value>
+		<comment>Complete</comment>
+	</data>
 </root>

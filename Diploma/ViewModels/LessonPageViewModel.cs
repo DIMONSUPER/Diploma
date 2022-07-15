@@ -35,6 +35,14 @@ namespace Diploma.ViewModels
         private ICommand _completeButtonTappedCommand;
         public ICommand CompleteButtonTappedCommand => _completeButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnCompleteButtonTappedCommand);
 
+        private ICommand _backButtonTappedCommand;
+        public ICommand BackButtonTappedCommand => _backButtonTappedCommand ??= SingleExecutionCommand.FromFunc(OnBackButtonTappedCommandAsync);
+
+        private Task OnBackButtonTappedCommandAsync()
+        {
+            return NavigationService.GoBackAsync();
+        }
+
         private Task OnCompleteButtonTappedCommand()
         {
             return _userDialogs.AlertAsync("Congratulations, your score is 100%!");
@@ -60,7 +68,7 @@ namespace Diploma.ViewModels
 
             if (args.PropertyName is nameof(CurrentLesson) && CurrentLesson is not null)
             {
-                foreach(var task in CurrentLesson.Tasks)
+                foreach (var task in CurrentLesson.Tasks)
                 {
                     task.PropertyChanged += OnTaskPropertyChanged;
                 }

@@ -96,7 +96,7 @@
                              Spacing="15"
                              Orientation="Vertical"
                              Margin="0,40,0,0"
-                             WidthRequest="260"
+                             WidthRequest="300"
                              HorizontalOptions="Center">
 
                     <Entry Text="{Binding Title}"

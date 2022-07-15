@@ -132,7 +132,6 @@ namespace Diploma.ViewModels.Tabs
                 if (currentUserResponse.IsSuccess)
                 {
                     SetUserInformation(currentUserResponse.Result);
-                    _currentUser = currentUserResponse.Result;
                 }
             }
             else
@@ -249,6 +248,8 @@ namespace Diploma.ViewModels.Tabs
 
         private void SetUserInformation(UserModel user)
         {
+            _currentUser = user;
+
             FirstName = user.Name;
             LastName = user.Surname;
             Description = user.Description;

@@ -139,6 +139,7 @@
     <None Remove="Events\" />
     <None Remove="Plugin.LocalNotification" />
     <None Remove="Acr.UserDialogs" />
+    <None Remove="Services\Notification\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -164,6 +165,7 @@
     <Folder Include="Services\Authorization\" />
     <Folder Include="Services\Course\" />
     <Folder Include="Events\" />
+    <Folder Include="Services\Notification\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\Font_Awesome_5_Regular_400.otf" />

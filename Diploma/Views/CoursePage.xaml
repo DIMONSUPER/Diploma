@@ -46,7 +46,7 @@
             <CollectionView.ItemsLayout>
 
                 <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="40"/>
+                                   ItemSpacing="0"/>
 
             </CollectionView.ItemsLayout>
 
@@ -71,7 +71,7 @@
                            VerticalTextAlignment="Center"
                            HorizontalOptions="Center"
                            Style="{x:DynamicResource iconStyle}"
-                           xct:TouchEffect.Command="{prism:GoBack}"/>
+                           xct:TouchEffect.Command="{Binding BackButtonTappedCommand}"/>
 
                     <!-- LINE -->
                     <BoxView Grid.Row="1"

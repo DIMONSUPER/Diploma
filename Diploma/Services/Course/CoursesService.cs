@@ -8,6 +8,7 @@ using Diploma.Services.Repository;
 using Diploma.Services.Rest;
 using Diploma.Services.Settings;
 using Diploma.Services.User;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Diploma.Services.Course
@@ -45,7 +46,8 @@ namespace Diploma.Services.Course
                 var response = await _restService.GetAsync<JToken>(url);
 
                 return JTokenHelper.ParseFromJToken<CourseModel>(response).Where(x =>
-                (!visibleOnly || x.IsVisible) && (x.Language == _settingsManager.UserSettings.CoursesLanguage));
+                (x.TeacherId == _settingsManager.AuthorizationSettings.UserId || !visibleOnly || x.IsVisible)
+                && (x.Language == _settingsManager.UserSettings.CoursesLanguage));
             });
         }
 
@@ -83,7 +85,6 @@ namespace Diploma.Services.Course
                         rating = 0,
                         category = course.Category,
                         image_url = course.ImageUrl,
-                        lessons = course.LessonsIds,
                         users = course.UsersIds,
                         teacher_id = course.TeacherId,
                         language = course.Language,
@@ -98,7 +99,7 @@ namespace Diploma.Services.Course
                     onFailure("Course is null");
                 }
 
-                return JTokenHelper.ParseFromJToken<CourseModel>(response).FirstOrDefault();
+                return JTokenHelper.ParseFromJTokenSingle<CourseModel>(response);
             });
         }
 
@@ -134,7 +135,7 @@ namespace Diploma.Services.Course
 
                 var lessonModels = JTokenHelper.ParseFromJToken<LessonModel>(response);
 
-                result = (await _mapperService.MapRangeAsync<LessonBindableModel>(lessonModels)).ToList();
+                result = (await _mapperService.MapRangeAsync<LessonBindableModel>(lessonModels)).OrderBy(x => x.Part).ToList();
 
                 for (int i = 0; i < result.Count; i++)
                 {
@@ -203,13 +204,13 @@ namespace Diploma.Services.Course
             };
 
             var response = await _restService.PostAsync<JToken>(url, data);
-
-            return JTokenHelper.ParseFromJToken<TaskModel>(response).FirstOrDefault();
+            var res = JTokenHelper.ParseFromJTokenSingle<TaskModel>(response);
+            return res;
         }
 
         private async Task<TaskModel> PutLessonIdForTaskAsync(int taskId, int lessonId)
         {
-            var url = $"{Constants.BASE_URL}/tasks";
+            var url = $"{Constants.BASE_URL}/tasks/{taskId}";
 
             var data = new
             {
@@ -219,9 +220,9 @@ namespace Diploma.Services.Course
                 }
             };
 
-            var response = await _restService.PostAsync<JToken>(url, data);
+            var response = await _restService.PutAsync<JToken>(url, data);
 
-            return JTokenHelper.ParseFromJToken<TaskModel>(response).FirstOrDefault();
+            return JTokenHelper.ParseFromJTokenSingle<TaskModel>(response);
         }
 
         private async Task<LessonModel> PostLessonAsync(LessonBindableModel lessonModel)
@@ -242,7 +243,7 @@ namespace Diploma.Services.Course
 
             var response = await _restService.PostAsync<JToken>(url, data);
 
-            return JTokenHelper.ParseFromJToken<LessonModel>(response).FirstOrDefault();
+            return JTokenHelper.ParseFromJTokenSingle<LessonModel>(response);
         }
 
         private async Task<LessonModel> PostLessonForCourseAsync(int courseId, LessonBindableModel lessonModel)
@@ -251,7 +252,7 @@ namespace Diploma.Services.Course
 
             var currentCourse = await GetCourseByIdAsync(courseId);
 
-            var lessonIds = currentCourse.LessonsIds.ToList();
+            var lessonIds = currentCourse.LessonsIds?.ToList() ?? new List<int>();
             lessonIds.Add(postedLesson.Id);
 
             var url = $"{Constants.BASE_URL}/courses/{courseId}";
